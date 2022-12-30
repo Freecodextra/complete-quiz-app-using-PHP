@@ -1,0 +1,1173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300;1,500&display=swap');
+:root {
+--bg: #f0f0f1;
+--blue: #0e3eda;
+--light-blue: #5d8bf4;
+--white: #fff;
+--gray: #ddd;
+--dark-gray: #444;
+--dark : #000;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: var(--bg);
+}
+input, select, datalist {
+  color: var(--dark);
+  background: var(--white);
+}
+/* ================ LOGIN AND SIGNUP STLYING ========================= */
+.wrapper, .wrapper .login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  min-height: 100vh;
+}
+.wrapper .login {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 15px;
+}
+.wrapper .login img {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .login .mb-3 {
+  background-color: var(--white);
+}
+.wrapper .login .mb-3 input, textarea {
+  border-radius: 0 3px 3px 0;
+  border: none;
+}
+.wrapper .login .mb-3 input, .wrapper .login button, textarea {
+  box-shadow: none !important;
+}
+.wrapper .login .mb-3 input:focus, textarea:focus {
+  outline: 1px solid var(--blue) !important;
+}
+.wrapper .login .d-grid button {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.wrapper .login .d-grid button:hover {
+  background-color: var(--light-blue);
+}
+.wrapper .login .text p a {
+  text-decoration-color: var(--blue);
+  color: var(--blue);
+}
+.wrapper .login .mb-3 {
+  display: flex;
+  align-items: center;
+}
+.wrapper .login .mb-3 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+  background-color: var(--gray);
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 3px 0 0 3px;
+}
+/* ================ HOME PAGE STLYING ========================= */
+/* ===== HEADER  STLYING ====== */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--white);
+  height: 50px;
+  z-index: 1;
+}
+header .header-logo, header .extra {
+  display: flex;
+}
+header .header-logo .dash {
+  margin: 0 15px 0 10px;
+  font-size: larger;
+  cursor: pointer;
+  transition: 0.5s;
+}
+header .header-logo .dash i {
+  color: var(--dark);
+}
+header .header-logo .logo {
+  color: var(--dark);
+  width: 50px;
+  height: 50px;
+}
+header .header-logo .logo img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+/* ===== NOTIFICATION  STLYING ====== */
+header .extra .notification {
+  margin: 0 10px 0 15px;
+  position: relative;
+}
+header .extra .notification i {
+  color: var(--dark);
+}
+header .extra .notification::after {
+  content: "";
+  position: relative;
+  width: 7px;
+  height: 7px;
+  top: -7px;
+  left: -8px;
+  border-radius: 50%;
+  background-color: var(--blue);
+}
+header .extra .notification .card {
+  position: absolute;
+  top: 27px;
+  left: -300px;
+  display: none;
+  z-index: 5;
+}
+header .extra .notification .card .card-header {
+  background-color: var(--blue);
+  color: #fff;
+}
+header .extra .notification .card .card-footer {
+  background-color: var(--white);
+  color: var(--dark);
+  cursor: pointer;
+  z-index: 10;
+}
+header .extra .notification .card .card-body {
+  height: 200px;
+  overflow-y: scroll;
+  background-color: var(--white);
+  color: var(--dark);
+}
+header .extra .notification .card .card-body::-webkit-scrollbar {
+  width: 0;
+}
+header .extra .notification .card .notes .note .note-icon {
+  margin-right: 10px;
+}
+header .extra .notification .card .notes .note .note-body {
+  font-size: smaller;
+}
+header .extra .notification .card .notes .note .note-body span {
+  font-size: smaller;
+  font-weight: 600;
+  float: right;
+  margin: -15px;
+}
+/* ===== PROFILE  STLYING ====== */
+header .extra .profile, header .extra .notification, header .extra .mode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+header .extra .profile i, header .extra .notification i, header .extra .mode i {
+  cursor: pointer;
+}
+header .extra .profile {
+ background-color: var(--blue);
+ position: relative;
+}
+header .extra .profile a {
+  text-decoration: none;
+}
+header .extra .profile .accounts {
+  position: absolute;
+  top: 29px;
+  left: -80px;
+  background-color: var(--white);
+  border-radius: 5px;
+  border-top: 3px solid var(--blue);
+  display: none;
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+header .extra .profile .accounts .account {
+  height: 40px;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  color: var(--dark);
+}
+header .extra .profile .accounts .account:hover {
+  background-color: var(--gray);
+}
+header .extra .profile .accounts i {
+  color: var(--dark);
+  margin-right: 10px;
+}
+header .extra .profile i {
+  color: #fff;
+}
+/* ============ MODE ============= */
+.hide {
+  display: none;
+}
+header .extra .mode i {
+  margin-right: 8px;
+  color: var(--dark);
+}
+/* ======================== SIDE BAR STLYING =========================== */
+nav {
+  position: fixed;
+  width: 220px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  background-color: var(--white);
+  transition: all 0.5s ease-in-out;
+  z-index: 4;
+}
+nav .nav-logo .logo {
+  color: var(--dark);
+  padding: 0 15px;
+  width: 60px;
+  height: 60px;
+}
+nav .nav-logo .logo img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+nav .nav-header {
+  font-size: 25px;
+  color: var(--dark-gray);
+  /* padding: 0 15px; */
+  margin-bottom: 20px;
+}
+nav .nav-header .nav-text {
+  background-color: #c1efff;
+  color: #3ab0ff;
+  padding: 10px 15px;
+
+}
+nav .nav-body ul {
+  list-style: none;
+}
+nav .nav-body ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 5px;
+}
+nav .nav-body ul a {
+  text-decoration: none;
+  color: var(--dark-gray);
+  transition: 0.5s;
+}
+nav .nav-body ul a li {
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+nav .nav-body ul a li .link {
+  display: flex;
+  align-items: center;
+}
+nav .nav-body ul a li .link p {
+  width: 200px;
+}
+nav .nav-body ul a li .link span {
+  margin-left: 60px;
+  margin-top: -12px;
+  font-weight: bolder;
+}
+nav .nav-body ul a li .link .icon {
+  margin-right: 12px;
+  margin-top: -13px;
+}
+nav .nav-body ul a li:hover, nav .nav-body ul a.active li {
+  background-color: var(--blue);
+}
+nav .nav-body ul a li .link i {
+  color: var(--dark-gray);
+}
+nav .nav-body ul a li:hover .link .icon i, nav .nav-body ul a li:hover .link span i,nav .nav-body ul a.active li .link .icon i{
+  color: var(--white);
+}
+nav .nav-body ul a li:hover .link p, .nav-body ul a.active li .link p {
+  color: var(--white);
+}
+nav .nav-body .links .drop-down {
+  display: none;
+  transition: display 0.5s ease;
+}
+nav .nav-body .links .drop-down.down {
+  display: block;
+}
+.nav-collapse {
+  left: -100%;
+}
+/* ============================ MAIN CONTENT ========================== */
+main {
+  margin-top: 50px;
+  width: 100%;
+  min-height: 100%;
+  transition: all 0.5s ease;
+  color: var(--dark);
+}
+main .row {
+  width: 100%;
+  margin-left: 0;
+}
+nav.nav-collapse ~ main {
+  width: 100%;
+  height: 100%;
+}
+/* ============= PROFILE STAT ================ */
+main .row .col-md-4 {
+  background-color: var(--white);
+  padding: 40px;
+}
+main .row .col-md-4 .user-profile {
+  flex-direction: column;
+}
+main .row .col-md-4 .user-profile h2 {
+  margin: 10px;
+  font-weight: bolder;
+}
+main .row .col-md-4 .user-profile .profile-img {
+  background-color: rgba(171, 201, 255, 0.3);
+  width: 250px;
+  height: 350px;
+  border-radius: 45px;
+  overflow: hidden;
+}
+main .row .col-md-4 .user-profile .profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main .row .col-md-4 h1 {
+  text-align: center;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat {
+  margin: 10px;
+  width: 120px;
+  height: 170px;
+  padding: 15px;
+  border-radius: 20px;
+  display: inline-block;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat:nth-child(1) {
+  background-color: #faf4b7;
+  color: #ffc23c;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat:nth-child(2) {
+  background-color: #d9f8c4;
+  color: #59ce8f;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat:nth-child(3) {
+  background-color: #c1efff;
+  color: #3ab0ff;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat .sec .icon i {
+  font-size: 25px;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat .sec .text p {
+  margin-top: 7px;
+  font-size: 13px;
+}
+main .row .col-md-4 .user-profile .profile-body .stats .stat .sec .number {
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+.content {
+  padding: 25px;
+}
+.content .heading h2 {
+  font-weight: bold;
+}
+.courses a.all-course {
+  padding: 5px 10px;
+  background-color: var(--blue);
+  color: #fff;
+  border-radius: 4px;
+  float: right;
+}
+.courses a.all-course:hover {
+  background-color: #fff;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+}
+@media screen and (max-width:500px) {
+  .courses a.all-course {
+    float: none;
+  }
+}
+.content .courses .row .col-md-4 {
+  width: 250px;
+  margin: 20px;
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--white);
+  box-shadow: 0 9px 20px 0 rgba(0, 0, 0, 0.06);
+}
+.content .courses .row .col-md-4:hover {
+  box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.2);
+
+}
+.content .courses .row .col-md-4 .image {
+  width: 100%;
+  height: 100%;
+}
+.content .courses .row .col-md-4 .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.content .courses .row .col-md-4 .head {
+  font-size: 20px;
+  font-weight: bolder;
+}
+/* =================== COURSES PAGE STYLING ======================= */
+main .head, main .level {
+  margin: 10px 0;
+}
+main .courses {
+  margin: 20px 10px;
+}
+main .courses .col-md-3 {
+  margin-top: 10px;
+}
+main .courses a {
+  text-decoration: none;
+  color: var(--dark);
+}
+main .courses .course, main .courses .course .main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main .courses .course {
+  padding: 8px 13px;
+  border-radius: 15px;
+  background-color: var(--white);
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.07);
+}
+main .courses .course .main .text {
+  margin-top: 10px;
+}
+main .courses .course .main .text p {
+  position: relative;
+  font-size: 13px;
+  margin-left: 10px;
+}
+main .courses .course .main .text p::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--blue);
+}
+main .courses .image {
+  width: 70px;
+  height: 70px;
+}
+main .courses .image img {
+  width: 100%;
+  height: 100%;
+}
+/* =================== SINGLE COURSE PAGE STYLING ======================= */
+main .course-head {
+  background-color: var(--white);
+  padding: 8px 15px;
+}
+main .course-head .course {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 15px;
+}
+main .course-head .course .image {
+  width: 200px;
+  height: 200px;
+}
+main .course-head .course .image img {
+  width: 100%;
+  height: 100%;
+}
+.topic, .exercises {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0 0 20px;
+}
+.topic .topic-image {
+  width: 50px;
+  height: 50px;
+}
+.topic .topic-image img, .exercises .exercise-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.exercises {
+  margin-left: 40px;
+}
+.exercises .exercise-image {
+  width: 30px;
+  height: 30px;
+}
+.exercises .exercise-name {
+  margin-top: 10px;
+}
+.exercises .exercise-name a {
+  text-decoration: none;
+  color: var(--dark);
+
+}
+.exercises .exercise-name a:hover {
+  text-decoration: underline;
+}
+/* =================== SETTING PASGE STYLING ======================= */
+.more-info {
+  margin-top: 20px;
+  padding: 4px 0;
+  border-bottom: 1px solid #ddd;
+  gap: 20px;
+}
+.more-info a {
+  margin: 0 20px;
+  padding: 3px 0;
+  text-decoration: none;
+  color: var(--black);
+  transition: all ease .5s;
+}
+.more-info a:hover, .more-info a.active {
+  color: var(--blue);
+  border-bottom: 3px solid var(--blue);
+}
+.main-details {
+  margin: 20px 0 0 60px;
+  position: relative;
+}
+.main-details .one {
+  position: absolute;
+  transition: all ease .5s;
+}
+#social,#password {
+  left: -120%;
+}
+main #settings {
+  background-color: transparent;
+}
+#settings p, .form p, ::placeholder{
+  font-size: 13px;
+  opacity: 0.5;
+}
+main .form {
+  margin: 0 25px;
+}
+main .form .row .col-md-3, main .form .row .col-md-8, .form .row .each {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--white);
+}
+main input, button {
+  box-shadow: none !important;
+}
+input, textarea {
+  background-color: transparent !important;
+}
+main input:focus, textarea:focus {
+  outline: 1px solid var(--blue) !important;
+  background-color: transparent !important;
+}
+.form .row .col-md-3 button, .form .row .col-md-8 button, .form .row .each button {
+  background-color: var(--blue);
+  color: #fff;
+}
+.form .row .col-md-3 button:hover, .form .row .col-md-8 button:hover, .form .row .each button:hover {
+  background-color: var(--light-blue);
+}
+
+/* =================== START QUIZ PAGE STYLING ======================= */
+.start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .body {
+  margin: 20px 0 0 10px;
+
+}
+main .body .text {
+  margin-bottom: 20px;
+}
+main .body .text p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+main .body .info {
+  margin-left: 50px;
+}
+main .button a {
+  background-color: var(--blue);
+  color: #fff;
+}
+main .button a:hover {
+  background-color: var(--light-blue);
+  color: #fff;
+}
+/* =================== QUIZ PAGE STYLING ======================= */
+main .quiz {
+  background-color: transparent;
+}
+main .quiz .quiz-head {
+  background-color: var(--light-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 7px;
+}
+main .quiz .quiz-body {
+  margin: 50px 0 0 50px;
+}
+@media screen and (max-width:768px) {
+  main .quiz .quiz-body {
+    margin-left: 0;
+  }
+  main .quiz .quiz-head h4 {
+    font-size: 16px;
+  }
+}
+main .quiz .quiz-body .quiz-body-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  background: var(--white);
+  padding: 8px 5px;
+  border-radius: 20px 20px 0 0;
+  color: var(--darks);
+}
+main .quiz .quiz-body .quiz-body-head .sound {
+  font-size: 25px;
+  cursor: pointer;
+}
+main .quiz .quiz-body .quiz-body-body {
+  background-color: var(--white);
+  color: var(--dark);
+  padding: 20px 20px 1px 20px;
+  margin-bottom: 20px;
+}
+main .quiz .quiz-body .quiz-body-body .question h5 {
+  line-height: 20px
+  
+}
+main .quiz .quiz-body .quiz-body-body .options .option {
+  margin: 20px 0;
+}
+main .quiz .quiz-body .quiz-body-body .options .buttons {
+  margin-top: 20px;
+}
+
+main .quiz .quiz-footer .quiz-footer-head {
+  background-color: var(--gray);
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  padding: 7px 0;
+}
+main .quiz .quiz-footer .quiz-footer-body {
+  margin-top: 5px;
+}
+main .quiz .quiz-footer .quiz-footer-body a {
+  margin-top: 3px;
+}
+/* =================== QUIZ END STYLING ======================= */
+.overview-body th, .overview-body td {
+  text-align: center;
+  color: var(--dark)
+}
+.overview-body tfoot {
+  width: 100%;
+  background-color: var(--gray);
+
+}
+.overview-body tfoot tr {
+  text-align: center;
+}
+/* =================== QUIZ RESULT STYLING ======================= */
+.quiz-result {
+  margin-top: 20px;
+  background-color: var(--gray);
+  padding: 10px;
+}
+.quiz-result .quiz-result-head tr td:first-child {
+  text-align: end;
+}
+.quiz-result .quiz-result-head table {
+  color: var(--dark);
+}
+
+/* =================== OVERVIEW PAGE STYLING ======================= */
+main .overviews {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  color: var(--dark);
+  background-image: url(../images/confetti.gif);
+}
+main .overviews .overview {
+  text-align: center;
+}
+main .overviews .overview .emoji p {
+  font-size: 100px;
+}
+main .overviews .overview .text p {
+  font-size: 25px;
+}
+main .overviews .overview .text h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+/* =================== ADMIN SECTION STYLING ======================= */
+
+/* =================== ADMIN HOME PAGE STYLING ======================= */
+main .admin, main .admin .dashboard .summary .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .admin .dashboard .summary .row .col-md-3 {
+ position: relative;
+ margin: 10px 20px;
+ width: 320px;
+ height: 120px;
+ border-radius: 7px;
+ overflow: hidden;
+ color: #fff;
+ box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.07);
+}
+main .admin .dashboard .summary .row .col-md-3::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: -35px;
+  left: 75%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.17);
+
+}
+main .admin .dashboard .summary .row .col-md-3::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 45px;
+  left: 68%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+
+}
+main .admin .dashboard .summary .row .col-md-3:nth-child(1) {
+  background: linear-gradient(to right, #ff5789, #a704fd)
+}
+main .admin .dashboard .summary .row .col-md-3:nth-child(2) {
+  background: linear-gradient(to right, #b3eb50, #429421)
+}
+main .admin .dashboard .summary .row .col-md-3:nth-child(3) {
+  background: linear-gradient(to right, #02aab0, #00cdac)
+}
+main .admin .dashboard .summary .row .col-md-3 .icon {
+  float: right;
+  margin-top: 5px;
+  font-size: 25px;
+}
+main .admin .dashboard .summary .row .col-md-3 .number {
+  margin-top: 35px;
+}
+main .admin .dashboard .summary .row .col-md-3 .text {
+font-size: 13px;
+}
+.mainboard {
+  margin: 20px;
+}
+.mainboard .mainboard-head h5 {
+  margin-top: 5px;
+}
+.mainboard .row .col-md-6 {
+  background-color: var(--white);
+  overflow: auto;
+  margin-top: 10px;
+  height: 450px;
+}
+.mainboard .mainboard-body .one {
+  display: flex;
+  gap: 7px;
+}
+.mainboard .mainboard-body div {
+  background-color: var(--white);
+}
+.mainboard .mainboard-body .one .text h6 {
+  font-size: 15px;
+}
+.mainboard .mainboard-body .one .text p {
+  font-size: 13px;
+  opacity: 0.5;
+}
+.mainboard .mainboard-body .img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--dark-gray);
+  overflow: hidden;
+}
+.mainboard .mainboard-body .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.course-overview {
+  margin: 0 20px;
+}
+.course-overview .row {
+  margin-right: 300px;
+  background-color: var(--white);
+}
+.course-overview .head {
+  display: flex;
+  justify-content: space-between;
+}
+.course-overview .head .head-input select {
+  background:  var(--white);
+  color: var(--dark);
+  border: none;
+  padding: 8px 5 px;
+  font-size: 15px;
+}
+.course-overview .body {
+  margin-top: -20px;
+}
+.course-overview .body .col-sm-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.course-overview .body .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.course-overview .body .first .icon {
+  background: linear-gradient(to right, #0096ff, #5800ff);
+}
+.course-overview .body .second .icon {
+  background: linear-gradient(to right, #ff87b2, #e64848);
+}
+.course-overview .body .third .icon {
+  background: linear-gradient(to right, #ffcb42, #ffb200);
+}
+.course-overview .body .fourth .icon {
+  background: linear-gradient(to right, #b1e1ff, #0096ff);
+}
+.course-overview .body .icon i {
+  font-size: 2opx ;
+}
+.course-overview .body .text {
+  margin-top: 25px;
+}
+.course-overview .body .text p {
+  margin: 0;
+}
+.course-overview .body .text p:first-of-type {
+  font-size: 10px;
+}
+.course-overview .body .text p:last-of-type {
+  font-size: 20px;
+  font-weight: bold;
+}
+/* =================== TABLE STYLING ======================= */
+.table-data {
+  background-color: var(--white);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow-x: scroll;
+}
+.table-data::-webkit-scrollbar {
+  width: 0;
+}
+.table-data thead tr td {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.table-data tbody tr td {
+  color: var(--dark);
+}
+.add-student {
+  margin: 15px 5px;
+}
+@media screen and(max-width:1024px) {
+  .table-data {
+    overflow: scroll;
+  }
+}
+@media screen and (max-width:768px) {
+  .table-data {
+    overflow: scroll;
+  }
+}
+tbody tr td:last-child {
+  position: relative;
+}
+tbody tr td:last-child .links {
+  display: none;
+  border-radius: 10px;
+  flex-direction: column;
+  position: absolute;
+  width: 120px;
+  top: 35px;
+  left: -60px;
+  border-radius: 5px;
+  background-color: var(--white);
+  z-index: 10;
+}
+tbody tr td:last-child .links button {
+  color: var(--dark);
+  border: none;
+  padding: 8px 5px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 100%;
+  background-color: transparent;
+  border-bottom:1px solid rgba(0, 0, 0, 0.1);
+}
+tbody tr td:last-child .links button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+tbody tr td:last-child:hover .links {
+  display: flex;
+}
+.links::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 55%;
+  border: 10px solid;
+  border-color: transparent transparent var(--white) transparent;
+}
+.add-student button:not(:last-child) {
+  background-color: var(--blue);
+  color: #fff;
+}
+.add-student button:last-child {
+  background-color: #fff;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+/* =================== PHOTO CARD STYLING ======================= */
+main .photo-card {
+  background-color: var(--white);
+  max-width: 600px;
+  overflow: auto;
+}
+.photo-card .card-content {
+  width: 100%;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-card .card-logo .img {
+  width: 150px;
+  height: 150px;
+}
+.photo-card .card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-body {
+  width: 100%;
+  flex-direction: row-reverse;
+}
+.card-body .user-image {
+  width: 30%;
+  height: 180px;
+}
+.card-body .user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--dark);
+}
+@media screen and (max-width:500px) {
+  .card-body .user-image img {
+    display: none;
+  }
+}
+.card-body .text {
+  width: 100%;
+}
+.card-body .text .line {
+  gap: 50px;
+  border-bottom: 1px solid var(--dark);
+  margin-bottom: 20px;
+}
+.card-body .text .line .line-text {
+  margin-left: 15px;
+}
+.card-body .text .line .line-text p {
+  margin-bottom: -5px;
+  font-weight: bold;
+}
+.card-body .text .line .line-text span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+.user-courses, .courses-list {
+  border-bottom: 1px solid var(--dark);
+}
+.user-courses {
+  border-top: 1px solid var(--dark);
+}
+.user-courses h4 {
+  margin-left: 10px;
+}
+.info-note {
+  margin-top: 10px;
+  border-bottom: 1px solid var(--dark);
+}
+.info-note .note-list ul {
+  list-style-type: decimal;
+}
+/* =================== FOOTER STYLING ======================= */
+select {
+  box-shadow: none !important;
+}
+datalist {
+  width: 100%;
+  border: 1px solid #ddd;
+}
+#snackbar, .loading {
+  max-width: 200px;
+  height: auto;
+  background-color: rgba(51, 51, 51, 0.884);
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 14px;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+}
+.loading {
+  top: 50%;
+}
+.loading h1 {
+  animation: roll 0.7s ease infinite;
+  transform: rotate(45deg);
+}
+@keyframes roll {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+#snackbar {
+  visibility: hidden;
+  bottom: 50%;
+}
+#Snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 50%; opacity: 1;}
+}
+@keyframes fadeout {
+  from {bottom: 50%; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 3;
+  display: none;
+  transition: all 0.5s ease-in-out;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.page-content {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+.page-content::after {
+  content: "";
+  display: block;
+}
+footer, .page-content::after {
+  height: 100px;
+}
+footer {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+footer .footer-text, footer .footer-text a {
+  color: var(--dark-gray);
+}
+footer .footer-icons a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--dark-gray);
+}
+/* MODAL STYLING */
+.modal {
+  color: var(--dark);
+}
+.modal-header, .modal-body, .modal-footer {
+  background-color: var(--white);
+}
+.modal-body::-webkit-scrollbar {
+  width: 0;
+}
