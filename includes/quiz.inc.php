@@ -204,7 +204,7 @@ if (isset($_POST['quiz'])) {
             $x += $score;
         }
         $z = $x / $y;
-        echo $z;
+        echo round($z,2);
     } else {
         echo 0;
     }

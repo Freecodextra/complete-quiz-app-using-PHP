@@ -168,6 +168,7 @@ if (isset($_GET['user'])) {
         var city = $("#city").val();
         var phone = $("#phone").val();
         var sex = $("#sex").val();
+        var level = $("#level").val();
         $.post("../includes/students.inc.php", {
           personal: personal,
           hidden: hidden,
@@ -175,7 +176,8 @@ if (isset($_GET['user'])) {
           lName: lName,
           city: city,
           phone: phone,
-          sex: sex
+          sex: sex,
+          level:level
         }, function(data, status) {
           toast(data);
         });

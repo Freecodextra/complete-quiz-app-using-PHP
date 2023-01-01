@@ -266,11 +266,13 @@ if (isset($_SESSION['teacher'])) {
     // ========================= GET ALL COURSES =====================
     function getCourses() {
       var fetchCourse = true;
-      $.post("../includes/courses.inc.php", {
-        fetchCourse: fetchCourse
+      var teacherId = <?php echo $teacher_id; ?>;
+      $.post("../includes/teacher-courses.inc.php", {
+        fetchCourse: fetchCourse,
+        teacherId:teacherId
       }, function(data, status) {
         var results = JSON.parse(data);
-        var x = '<option value="-1">--- Select Course ---</option><option value="0">default</option>';
+        var x = '<option value="0">--- Select Course ---</option>';
         results.forEach(result => {
           x += `<option value="${Number(result.id)}">${result.course_short_name}</option>`;
         });

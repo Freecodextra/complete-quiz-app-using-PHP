@@ -81,6 +81,10 @@ if (isset($_POST['addQuiz'])) {
     }
 } elseif (isset($_POST['remove'])) {
     $id = $_POST['id'];
+    $a_sql = "DELETE FROM attempted WHERE quiz_id = $id;";
+    $b_sql = "DELETE FROM attempts WHERE quiz_id = $id;";
+    mysqli_query($conn, $a_sql);
+    mysqli_query($conn, $b_sql);
     $sql = "DELETE FROM quizes WHERE id = '$id';";
     // Update all questions to default 
     $q_sql = "UPDATE questions SET quiz_id = 0 WHERE quiz_id = $id;";

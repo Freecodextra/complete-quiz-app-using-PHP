@@ -169,6 +169,12 @@ if (isset($_SESSION['id'])) {
             <div class="row d-flex align-items-start justify-content-center">
               <?php
               foreach ($popularCourses as $popularCourse) {
+                $id;
+                if (isset($_SESSION['id'])) {
+                  $id = $_SESSION['id'];
+                } else {
+                  $id = "";
+                }
                 echo '
                     <div class="col-md-4">
                     <a href="./course.php?course=' . $popularCourse[0] . '&user='.$id.'">

@@ -45,6 +45,19 @@ if (isset($_POST['add'])) {
 
 elseif (isset($_POST['remove'])) {
     $id = $_POST['id'];
+    // delete attempted and attempts
+    $ss_sql = "SELECT * FROM quizes WHERE course_id = '$id';";
+    $ss_result = mysqli_query($conn,$ss_sql);
+    if(mysqli_num_rows($ss_result) > 0) {
+        while($ss_row = mysqli_fetch_assoc($ss_result)) {
+            $quiz_id = $ss_row['id'];
+            $a_sql = "DELETE FROM attempted WHERE quiz_id = $quiz_id;";
+            $b_sql = "DELETE FROM attempts WHERE quiz_id = $quiz_id;";
+            mysqli_query($conn, $a_sql);
+            mysqli_query($conn, $b_sql);
+
+        }
+    }
     // delete course
     $sql = "DELETE FROM courses WHERE id = '$id';";
     // delete course enrollments
