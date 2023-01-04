@@ -41,14 +41,14 @@ function logoSrc()
               while ($row = mysqli_fetch_assoc($result)) {
                 $class_id = $row['id'];
                 $class_name = $row['class_name'];
-                echo '<div class="courses">
+                $sql1 = "SELECT * FROM courses WHERE `level` = '$class_id';";
+                $result1 = mysqli_query($conn, $sql1);
+                if (mysqli_num_rows($result1) > 0) {
+                  echo '<div class="courses">
                 <div class="level">
                   <h4>'.$class_name.' COURSES</h4>
                 </div>
                 <div class="row">';
-                $sql1 = "SELECT * FROM courses WHERE `level` = '$class_id';";
-                $result1 = mysqli_query($conn, $sql1);
-                if (mysqli_num_rows($result1) > 0) {
                   while ($row1 = mysqli_fetch_assoc($result1)) {
                     $course_id = $row1['id'];
                     $course_short_name = $row1['course_short_name'];

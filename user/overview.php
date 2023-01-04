@@ -43,11 +43,6 @@ if (isset($_GET['quiz'])) {
     <link rel="stylesheet" href="../public/style.css">
     <link rel="shortcut icon" href="<?php echo logoSrc() ?>" type="image/x-icon">
     <title>Overview - Quiz App</title>
-    <style>
-      main .overviews {
-        background-image: url(../images/confetti.gif);
-      }
-    </style>
   </head>
 
   <body>
@@ -64,7 +59,7 @@ if (isset($_GET['quiz'])) {
           </div>
           <div class="text">
             <p>Your Score is</p>
-            <h1><?php echo $percent; ?>%</h1>
+            <h1><?php echo round($percent,2); ?>%</h1>
           </div>
           <form action="../includes/quiz-on.inc.php" method="post">
             <!-- hidden -->

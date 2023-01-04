@@ -149,9 +149,9 @@ function logoSrc()
                     $y++;
                     $answer = $row3['answer'];
                     if ($answer == 0) {
-                      echo '<a href="./quiz.php?quiz='.$quiz_id.'&q='.$y.'&user='.$user_id.'&date='.$date.'" class="btn border-success text-success mx-1">'.$y.'</a>';
+                      echo '<a href="./quiz.php?quiz='.$quiz_id.'&q='.$y.'&user='.$user_id.'&date='.$date.'" class="btn border-primary text-primary mx-1">'.$y.'</a>';
                     } else {
-                      echo '<a href="./quiz.php?quiz='.$quiz_id.'&q='.$y.'&user='.$user_id.'&date='.$date.'" class="btn btn-success mx-1">'.$y.'</a>';
+                      echo '<a href="./quiz.php?quiz='.$quiz_id.'&q='.$y.'&user='.$user_id.'&date='.$date.'" class="btn btn-primary mx-1">'.$y.'</a>';
                     }
                   }
                 ?>

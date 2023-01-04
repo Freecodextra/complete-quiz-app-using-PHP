@@ -20,18 +20,22 @@
         <div class="profile">
           <i class="bi bi-person"></i>
           <div class="accounts">
-            <div class="account acccount-profile d-flex align-items-center">
+            <!-- <div class="account acccount-profile d-flex align-items-center">
               <i class="bi bi-person"></i>
               <span>Profile</span>
-            </div>
+            </div> -->
+            <a href="./settings.php">
             <div class="account account-setting d-flex align-items-center">
               <i class="bi bi-gear"></i>
               <span>Settings</span>
             </div>
+            </a>
+            <a href="../includes/admin-logout.inc.php">
             <div class="account account-logout d-flex align-items-center">
               <i class="bi bi-box-arrow-right"></i>
               <span>Logout</span>
             </div>
+            </a>
           </div>
         </div>
         <div class="notification">
