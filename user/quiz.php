@@ -90,7 +90,9 @@ function logoSrc()
               <div class="sound"><i class="bi bi-volume-up"></i></div>
             </div>
             <div class="quiz-body-body">
-              <div class="question"><h5><?php echo $question; ?></h5></div>
+              <div class="question"><h5><?php echo $question; ?></h5>
+              <!-- <img src="../images/avatar.png" id="question-img"/> -->
+            </div>
               <div class="options">
                 <form action="../includes/quiz-on.inc.php" method="POST">
                   <?php
