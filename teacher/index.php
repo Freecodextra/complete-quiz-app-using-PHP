@@ -51,6 +51,8 @@ if (isset($_SESSION['teacher'])) {
     $sql5 = "SELECT * FROM users WHERE `level` = '$class_id';";
     $result5 = mysqli_query($conn, $sql5);
     $student_no = mysqli_num_rows($result5);
+  } else {
+    $student_no = 0;
   }
 }
 // no of quizes

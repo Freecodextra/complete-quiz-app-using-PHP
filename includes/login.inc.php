@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
                    $date = getdate()[0];
                    $id = $row['id'];
                    $sql = "UPDATE users SET last_login = $date WHERE id = $id;";
-                   header("Location: ../user/login.php?error=success&user=$user_id");
+                   header("Location: ../user/index.php?user=$user_id");
                     exit();
                 } else {
                     header("Location: ../user/login.php?error=wrongpwd");

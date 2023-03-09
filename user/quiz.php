@@ -25,6 +25,7 @@ while ($row3 = mysqli_fetch_assoc($result)) {
   $data[] = $row3;
 }
 $question_id = $data[$offset]['id'];
+$question_image = $data[$offset]['image'];
 $question = $data[$offset]['question'];
 $course_id = $data[$offset]['course_id'];
 
@@ -91,7 +92,24 @@ function logoSrc()
             </div>
             <div class="quiz-body-body">
               <div class="question"><h5><?php echo $question; ?></h5>
-              <!-- <img src="../images/avatar.png" id="question-img"/> -->
+              <?php
+              if($question_image == 1) {
+                $src;
+                $file = "../question-img/question" . $question_id . "*";
+                $fileSearch = glob($file);
+                if (count($fileSearch) > 0) {
+                  $fileExt = explode(".", $fileSearch[0]);
+                  $fileActExt = end($fileExt);
+                  $file_path = "../question-img/question" . $question_id . "." . $fileActExt;
+                  if (file_exists($file_path)) {
+                    $src = $file_path;
+                  } else {
+                    $src = "../images/avatar.png";
+                  }
+                }
+                echo '<img src="'.$src.'" id="question-img"/>';
+              }
+              ?>
             </div>
               <div class="options">
                 <form action="../includes/quiz-on.inc.php" method="POST">

@@ -83,8 +83,9 @@ if (isset($_SESSION['id'])) {
   }
 }
     // get image
-    $id = $_SESSION['id'];
     $src;
+    if(isset($_SESSION['id'])) {   
+      $id = $_SESSION['id'];
     $file = "../img-uploads/student". $id . "*";
     $fileSearch = glob($file);
     if (count($fileSearch) > 0) {      
@@ -100,6 +101,9 @@ if (isset($_SESSION['id'])) {
     } else {
       $src = "../images/avatar.png";
     }
+  } else {
+    $src = "../images/avatar.png";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">

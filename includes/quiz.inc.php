@@ -34,6 +34,25 @@ if (isset($_POST['quiz'])) {
             }
             echo "Added Successfully";
         } else {
+            // Query Data Base
+            $sql = "INSERT INTO questions (course_id,topic_id, quiz_id, question) VALUES ($course, $topic, $quiz, '$question');";
+            if (mysqli_query($conn, $sql)) {
+                $question_id = mysqli_insert_id($conn);
+                $options = array($opt1, $opt2, $opt3, $opt4, $opt5);
+                foreach ($options as $option => $value) {
+                    if ($value != "") {
+                        $value = str_replace("'", "''", $value);
+                        if ($option == $answer) {
+                            $osql = "INSERT INTO options (question_id, `option`, answer) VALUES ($question_id, '$value', 1);";
+                        } else {
+                            $osql = "INSERT INTO options (question_id, `option`) VALUES ($question_id, '$value');";
+                        }
+                        mysqli_query($conn, $osql);
+                    }
+                }
+            }
+
+            // Save Image
             $img_name = $image['name'];
             $img_error = $image['error'];
             $img_tmp_name = $image['tmp_name'];
@@ -49,25 +68,6 @@ if (isset($_POST['quiz'])) {
                         $img_new_name = "question" . $question_id . "." . $img_ext;
                         $img_new_des = $img_des . $img_new_name;
                         move_uploaded_file($img_tmp_name, $img_new_des);
-                        // Query Data Base
-                        $sql = "INSERT INTO questions (course_id,topic_id, quiz_id, question) VALUES ($course, $topic, $quiz, '$question');";
-                        if (mysqli_query($conn, $sql)) {
-                            $question_id = mysqli_insert_id($conn);
-                            $options = array($opt1, $opt2, $opt3, $opt4, $opt5);
-                            foreach ($options as $option => $value) {
-                                if ($value != "") {
-                                    $value = str_replace("'", "''", $value);
-                                    if ($option == $answer) {
-                                        $osql = "INSERT INTO options (question_id, `option`, answer) VALUES ($question_id, '$value', 1);";
-                                    } else {
-                                        $osql = "INSERT INTO options (question_id, `option`, answer) VALUES ($question_id, '$value');";
-                                    }
-                                    mysqli_query($conn, $osql);
-                                }
-                            }
-                        }
-
-
                         $img_sql = "UPDATE questions SET `image` = 1 WHERE id = '$question_id';";
                         mysqli_query($conn, $img_sql);
                         echo "Added Successfully";

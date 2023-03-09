@@ -6,6 +6,7 @@
 ?>
   <!-- OVERLAY -->
   <div class="overlay"></div>
+  <div class="loading-cover"></div>
   <div class="loading">
     <h1><i class="bi bi-arrow-clockwise"></i></h1>
     Loading...</div>

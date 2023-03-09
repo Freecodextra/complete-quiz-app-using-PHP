@@ -135,6 +135,25 @@ if (isset($_GET['quiz']) && $_GET['user']) {
               $x++;
               $question = $row3['question'];
               $question_id = $row3['id'];
+              $question_image = $row3['image'];
+              $image = "";
+              // get question image
+              if($question_image == 1) {
+                $src;
+                $file = "../question-img/question" . $question_id . "*";
+                $fileSearch = glob($file);
+                if (count($fileSearch) > 0) {
+                  $fileExt = explode(".", $fileSearch[0]);
+                  $fileActExt = end($fileExt);
+                  $file_path = "../question-img/question" . $question_id . "." . $fileActExt;
+                  if (file_exists($file_path)) {
+                    $src = $file_path;
+                  } else {
+                    $src = "../images/avatar.png";
+                  }
+                }
+                $image = '<img src="'.$src.'" id="question-img"/>';
+              }
               // get user answers
               $sql4 = "SELECT * FROM attempts WHERE user_id = '$user_id' AND quiz_id = '$quiz_id' AND question_id = '$x';";
               $result4 = mysqli_query($conn, $sql4);
@@ -150,7 +169,9 @@ if (isset($_GET['quiz']) && $_GET['user']) {
                     <div class="question"><b>Question '.$x.'</b></div>
                   </div>
               <div class="quiz-body-body">
-                  <div class="question"><h5>'.$question.'</h5></div>
+                  <div class="question"><h5>'.$question.'</h5>
+                  '.$image.'
+                  </div>
                   <div class="options">';
                   $y = 0;
                   $alpha = array("","A", "B", "C", "D", "E", "F", "G", "H");

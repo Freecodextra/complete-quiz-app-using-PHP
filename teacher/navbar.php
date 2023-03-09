@@ -84,6 +84,13 @@
               ?>
             </ul>
           </div>
+          <?php
+          if(isset($_SESSION['teacher'])) {
+            $teacher_id = $_SESSION['teacher'];
+            $sql = "SELECT * FROM classes WHERE teacher = '$teacher_id';";
+            $result = mysqli_query($conn, $sql);
+            if(mysqli_num_rows($result) > 0) {
+          ?>
           <a href="./class.php?teacher=<?php if(isset($_SESSION['teacher'])) {echo $teacher_id;} ?>">
                     <li>
                       <div class="link">
@@ -94,6 +101,10 @@
                   </div>
                 </li>
                 </a>
+                <?php
+                    }
+                  }
+                ?>
           <a href="./quizes.php?teacher=<?php if(isset($_SESSION['teacher'])) {echo $teacher_id;} ?>">
                     <li>
                       <div class="link">
