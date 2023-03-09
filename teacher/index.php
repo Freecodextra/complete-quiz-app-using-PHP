@@ -72,6 +72,27 @@ if (isset($_SESSION['teacher'])) {
     }
   }
 }
+    // get image
+    $src;
+    $id = null;
+    if(isset($_SESSION['teacher'])) {
+      $id = $_SESSION['teacher'];
+    }
+    $file = "../img-uploads/teacher". $id . "*";
+    $fileSearch = glob($file);
+    if (count($fileSearch) > 0) {      
+      $fileExt = explode(".", $fileSearch[0]);
+      $fileActExt = end($fileExt);
+      $file_path = "../img-uploads/teacher" . $id .".". $fileActExt;
+      if(file_exists($file_path)) {
+        $src = $file_path;
+      }
+      else {
+        $src = "../images/avatar.png";
+      }
+    } else {
+      $src = "../images/avatar.png";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +124,7 @@ if (isset($_SESSION['teacher'])) {
       <div class="col-md-4">
         <div class="user-profile d-flex align-items-center justify-content-center">
           <div class="profile-img">
-            <img src="../images/avatar.png" alt="Avatar">
+            <img src="<?php echo $src; ?>" alt="Avatar">
           </div>
           <h2>Hi <?php if (isset($_SESSION['teacher'])) {
                     echo $_SESSION['uid'] . "!";

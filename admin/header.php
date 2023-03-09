@@ -1,11 +1,12 @@
 <?php
   require "../includes/db.inc.php";
-  $sql = "SELECT * FROM notifications";
+  $sql = "SELECT * FROM notifications ORDER BY id DESC";
   $result = mysqli_query($conn,$sql);
   $result_checker = mysqli_num_rows($result);
 ?>
 <!-- OVERLAY -->
 <div class="overlay"></div>
+<div class="loading-cover"></div>
 <div class="loading">
     <h1><i class="bi bi-arrow-clockwise"></i></h1>
     Loading...</div>

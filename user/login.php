@@ -76,7 +76,6 @@
 <?php
     require "../admin/footer.php";
 ?>
-  <script src="../public/loading.js"></script>
   <script src="../public/toast.js"></script>
   <script src="../public//loader.js"></script>
   <script><?php if (isset($_GET['error'])) {

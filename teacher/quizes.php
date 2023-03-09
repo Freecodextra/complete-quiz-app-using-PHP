@@ -139,7 +139,7 @@ if (isset($_SESSION['teacher'])) {
               </select>
             </div>
             <div class="d-grid shadow-sm">
-              <button type="submit" class="btn btn-primary" onclick="addQuiz()">Add Quiz</button>
+              <button type="submit" class="btn btn-primary" id="quiz-btn" onclick="addQuiz()">Add Quiz</button>
             </div>
           </div>
 
@@ -205,7 +205,7 @@ if (isset($_SESSION['teacher'])) {
             <!-- Hidden -->
             <input type="hidden" name="hidden" id="hidden">
             <div class="d-grid shadow-sm">
-              <button type="submit" class="btn btn-primary" onclick="updateQuiz()">Update Quiz</button>
+              <button type="submit" class="btn btn-primary" id="u-quiz-btn" onclick="updateQuiz()">Update Quiz</button>
             </div>
           </div>
 
@@ -309,6 +309,8 @@ if (isset($_SESSION['teacher'])) {
     });
     // ADD QUIZ
     function addQuiz() {
+      $("#quiz-btn").html("<span class='spinner-border'></span>");
+      $("#quiz-btn").attr("disabled", true);
       var addQuiz = true;
       var topic = $("#topic").val();
       var course = $("#course").val();
@@ -339,6 +341,8 @@ if (isset($_SESSION['teacher'])) {
           displayTable();
         }
         toast(data);
+        $("#quiz-btn").html("Add Quiz");
+        $("#quiz-btn").attr("disabled",false);
       });
     }
     //============================= DELETE QUIZ =========================
@@ -377,6 +381,8 @@ if (isset($_SESSION['teacher'])) {
     }
 
     function updateQuiz() {
+      $("#u-quiz-btn").html("<span class='spinner-border'></span>");
+      $("#u-quiz-btn").attr("disabled", true);
       var update = true;
       var topic = $("#n-topic").val();
       var course = $("#n-course").val();
@@ -402,6 +408,8 @@ if (isset($_SESSION['teacher'])) {
           displayTable();
         }
         toast(data);
+        $("#u-quiz-btn").html("Update Quiz");
+        $("#u-quiz-btn").attr("disabled",false);
       });
     }
     //============================= CARDS DISPLAYS =========================

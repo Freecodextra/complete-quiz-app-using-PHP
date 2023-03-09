@@ -113,7 +113,7 @@ if (isset($_SESSION['admin'])) {
               <textarea name="topicDesc" id="topicDesc" cols="30" rows="6" class="form-control" placeholder="e.g You will learn how chemicals combine together to form other chemicals..."></textarea>
             </div>
             <div class="d-grid shadow-sm">
-              <button type="submit" class="btn btn-primary" onclick="addTopic()">Add Topic</button>
+              <button type="submit" class="btn btn-primary" id="topic-btn" onclick="addTopic()">Add Topic</button>
             </div>
           </div>
 
@@ -155,7 +155,7 @@ if (isset($_SESSION['admin'])) {
             <input type="hidden" name="hidden" id="hidden">
             <input type="hidden" name="prevCourse" id="prevCourse">
             <div class="d-grid shadow-sm">
-              <button type="submit" class="btn btn-primary" onclick="updateTopic()">Update Topic</button>
+              <button type="submit" class="btn btn-primary" id="u-topic-btn" onclick="updateTopic()">Update Topic</button>
             </div>
           </div>
 
@@ -213,7 +213,7 @@ if (isset($_SESSION['admin'])) {
               <input type="hidden" name="h-topic" id="h-topic">
               <input type="hidden" name="h-course" id="h-course">
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary" onclick="addQuizz()">Add Quiz</button>
+                <button type="submit" class="btn btn-primary" id="quiz-btn" onclick="addQuizz()">Add Quiz</button>
               </div>
               </form>
             </div>
@@ -287,6 +287,8 @@ if (isset($_SESSION['admin'])) {
     }
     //============================= ADD TOPIC =========================
     function addTopic() {
+      $("#topic-btn").html("<span class='spinner-border'></span>");
+  $("#topic-btn").attr("disabled", true);
       var addTopic = true;
       var course = $("#course").val();
       var topicName = $("#topicName").val();
@@ -306,6 +308,8 @@ if (isset($_SESSION['admin'])) {
           displayTable();
         }
         toast(data);
+        $("#topic-btn").html("Add Topic");
+     	$("#topic-btn").attr("disabled",false);
       });
     }
     //============================= ADD TOPIC =========================
@@ -323,6 +327,8 @@ if (isset($_SESSION['admin'])) {
     }
 
     function addQuizz() {
+      $("#quiz-btn").html("<span class='spinner-border'></span>");
+  $("#quiz-btn").attr("disabled", true);
       var addQuiz = true;
       var topic = $("#h-topic").val();
       var course = $("#h-course").val();
@@ -353,6 +359,8 @@ if (isset($_SESSION['admin'])) {
           exerciseNum();
         }
         toast(data);
+        $("#quiz-btn").html("Add Quiz");
+     	$("#quiz-btn").attr("disabled",false);
       });
     }
     //============================= DELETE TOPIC =========================
@@ -385,6 +393,8 @@ if (isset($_SESSION['admin'])) {
     }
 
     function updateTopic() {
+      $("#u-topic-btn").html("<span class='spinner-border'></span>");
+  $("#u-topic-btn").attr("disabled", true);
       var update = true;
       var hidden = $("#hidden").val();
       var course = $("#n-course").val();
@@ -401,9 +411,11 @@ if (isset($_SESSION['admin'])) {
       }, function(data, status) {
         if (data === "Edited Successfully") {
           $("#myModal1").modal("hide");
+          displayTable();
         }
-        displayTable();
         toast(data);
+        $("#u-topic-btn").html("Update Topic");
+     	$("#u-topic-btn").attr("disabled",false);
       });
     }
     //============================= CARDS DISPLAYS =========================

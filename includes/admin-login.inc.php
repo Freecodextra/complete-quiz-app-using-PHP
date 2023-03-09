@@ -34,7 +34,7 @@ if (isset($_POST['admin'])) {
                    $date = getdate()[0];
                    $id = $row['id'];
                    $sql = "UPDATE admins SET last_login = $date WHERE id = $id;";
-                   header("Location: ../admin/login.php?error=success");
+                   header("Location: ../admin/index.php");
                     exit();
                 } else {
                     header("Location: ../admin/login.php?error=wrongpwd");

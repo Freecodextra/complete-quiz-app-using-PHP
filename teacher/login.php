@@ -39,11 +39,11 @@
       elseif ($_GET['error'] == "wrongpwd") {
         echo '<div id="snackbar">Incorrect Password!</div>';
       }
-     elseif ($_GET['error'] == "success") {
-      $teacher_id = $_GET['teacher'];
-      echo '<div id="snackbar">Login Success!</div>';
-      header("refresh:2;url=./index.php?teacher=$teacher_id");
-     }
+    //  elseif ($_GET['error'] == "success") {
+    //   $teacher_id = $_GET['teacher'];
+    //   echo '<div id="snackbar">Login Success!</div>';
+    //   header("refresh:2;url=./index.php?teacher=$teacher_id");
+    //  }
     }  
   ?>
   <div class="wrapper container-fluid">

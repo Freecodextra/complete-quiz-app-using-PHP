@@ -119,7 +119,7 @@ if (isset($_SESSION['teacher'])) {
                 </select>
               </div>
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary" onclick="enrollUser()">Enroll Student</button>
+                <button type="submit" class="btn btn-primary" id="enroll-btn" onclick="enrollUser()">Enroll Student</button>
               </div>
           </div>
 
@@ -214,6 +214,8 @@ if (isset($_SESSION['teacher'])) {
     }
     //================================== ENROLL USER ==============================
     function enrollUser() {
+      $("#enroll-btn").html("<span class='spinner-border'></span>");
+      $("#enroll-btn").attr("disabled", true);
       var enroll = true;
       var student = $("#students").val();
       var courseId = $("#e-course").val();
@@ -229,6 +231,8 @@ if (isset($_SESSION['teacher'])) {
           $("#myModal").modal("hide");
         }
         toast(data);
+        $("#enroll-btn").html("Enroll Student");
+        $("#enroll-btn").attr("disabled",false);
       });
     }
         //============================= CARDS DISPLAYS =========================

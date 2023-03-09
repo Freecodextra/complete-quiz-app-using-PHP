@@ -112,7 +112,7 @@ session_start();
                 </select>
               </div>
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary" onclick="assignTeacher()">Assign Teacher</button>
+                <button type="submit" class="btn btn-primary" id="assign-btn" onclick="assignTeacher()">Assign Teacher</button>
               </div>
           </div>
 
@@ -142,7 +142,7 @@ session_start();
               <input type="text" class="form-control" placeholder="e.g Primary 1" id="class">
             </div>
             <div class="d-grid shadow-sm">
-              <button class="btn btn-primary" onclick="addClass()">Add Class</button>
+              <button class="btn btn-primary" id="class-btn" onclick="addClass()">Add Class</button>
             </div>
           </div>
 
@@ -174,7 +174,7 @@ session_start();
             <!-- Hidden input -->
             <input type="hidden" name="hidden" id="hidden">
             <div class="d-grid shadow-sm">
-              <button class="btn btn-primary" onclick="update()">Update Class</button>
+              <button class="btn btn-primary" id="u-class-btn" onclick="update()">Update Class</button>
             </div>
           </div>
 
@@ -257,8 +257,10 @@ session_start();
         $("#teacher").html(x);
       });
     }
-    // ========================= ADD CATEGORY =====================
+    // ========================= ADD CLASS =====================
     function addClass() {
+      $("#class-btn").html("<span class='spinner-border'></span>");
+  $("#class-btn").attr("disabled", true);
       var clas = $("#class").val();
       $.post("../includes/classes.inc.php", {
         clas: clas
@@ -271,10 +273,12 @@ session_start();
           classNum();
         }
         toast(data);
+        $("#class-btn").html("Add Class");
+     	$("#class-btn").attr("disabled",false);
       });
     }
 
-    //================================== UPDATE CATEGORY ==============================
+    //================================== UPDATE CLASS ==============================
     function updateClass(id) {
       var edit = true;
       $.post("../includes/classes.inc.php", {
@@ -289,6 +293,8 @@ session_start();
     }
 
     function update() {
+      $("#u-class-btn").html("<span class='spinner-border'></span>");
+  $("#u-class-btn").attr("disabled", true);
       var update = true;
       var updateID = $("#hidden").val();
       var updateName = $("#update-class").val();
@@ -303,6 +309,8 @@ session_start();
         displayTable();
         getClasses();
         toast(data);
+        $("#u-class-btn").html("Update Class");
+     	$("#u-class-btn").attr("disabled",false);
       });
     }
     //============================= DELETE CATEGORY =========================
@@ -320,6 +328,8 @@ session_start();
     }
     //================================== ASSIGN TEACHER ==============================
     function assignTeacher() {
+      $("#assign-btn").html("<span class='spinner-border'></span>");
+  $("#assign-btn").attr("disabled", true);
       var assign = true;
       var teacher = $("#teachers").val();
       var classId = $("#course").val();
@@ -335,6 +345,8 @@ session_start();
           $("#myModal").modal("hide");
         }
         toast(data);
+        $("#assign-btn").html("Assign Teacher");
+     	$("#assign-btn").attr("disabled",false);
       });
     }
     function unassignTeacher(id) {

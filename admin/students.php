@@ -111,7 +111,7 @@ if (isset($_SESSION['admin'])) {
                 </select>
               </div>
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary" onclick="enrollUser()">Enroll Student</button>
+                <button type="submit" class="btn btn-primary" id="enroll-btn" onclick="enrollUser()">Enroll Student</button>
               </div>
           </div>
 
@@ -161,7 +161,7 @@ if (isset($_SESSION['admin'])) {
               <input type="password" class="form-control" id="rpwd" placeholder="Repeat Password">
             </div>
             <div class="d-grid shadow-sm">
-              <button type="submit" class="btn btn-primary" onclick="addStudent()">Register Student</button>
+              <button type="submit" class="btn btn-primary" id="student-btn" onclick="addStudent()">Register Student</button>
             </div>
           </div>
 
@@ -248,6 +248,8 @@ if (isset($_SESSION['admin'])) {
     }
     // ========================== ADD STUDENTS =========================
     function addStudent() {
+      $("#student-btn").html("<span class='spinner-border'></span>");
+  $("#student-btn").attr("disabled", true);
       var addStudent = true;
       var fName = $("#fName").val();
       var lName = $("#lName").val();
@@ -272,11 +274,13 @@ if (isset($_SESSION['admin'])) {
           $("#email").val("");
           $("#pwd").val("");
           $("#rpwd").val("");
+          displayTable();
+          getStudents();
+          studentNum();
         }
         toast(data);
-        displayTable();
-        getStudents();
-        studentNum();
+        $("#student-btn").html("Add Student");
+     	$("#student-btn").attr("disabled",false);
       });
     }
     //============================= DELETE STUDENT =========================
@@ -318,6 +322,8 @@ if (isset($_SESSION['admin'])) {
     }
     //================================== ENROLL USER ==============================
     function enrollUser() {
+      $("#enroll-btn").html("<span class='spinner-border'></span>");
+  $("#enroll-btn").attr("disabled", true);
       var enroll = true;
       var student = $("#students").val();
       var courseId = $("#e-course").val();
@@ -333,6 +339,8 @@ if (isset($_SESSION['admin'])) {
           $("#myModal").modal("hide");
         }
         toast(data);
+        $("#enroll-btn").html("Enroll Student");
+     	$("#enroll-btn").attr("disabled",false);
       });
     }
         //============================= CARDS DISPLAYS =========================

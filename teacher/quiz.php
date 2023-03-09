@@ -160,7 +160,7 @@ if (isset($_POST['view'])) {
                 <input type="hidden" name="topic" id="topic" value="<?php echo $row['topic_id']; ?>">
                 <input type="hidden" name="quiz" id="quiz" value="<?php echo $id; ?>">
                 <div class="d-grid shadow-sm">
-                  <button type="submit" class="btn btn-primary">Add Question</button>
+                  <button type="submit" id="question-btn" class="btn btn-primary">Add Question</button>
                 </div>
               </form>
             </div>
@@ -214,7 +214,7 @@ if (isset($_POST['view'])) {
                 <input type="hidden" name="c-topic" id="c-topic" value="<?php echo $topic_id; ?>">
                 <input type="hidden" name="c-quiz" id="c-quiz" value="<?php echo $id; ?>">
                 <div class="d-grid shadow-sm">
-                  <button type="submit" class="btn btn-primary" name="checkboxBtn">Import Questions</button>
+                  <button type="submit" class="btn btn-primary" id="import-btn" name="checkboxBtn">Import Questions</button>
                 </div>
               </form>
             </div>
@@ -286,6 +286,8 @@ if (isset($_POST['view'])) {
       // ====================== ADD QUESTION ======================
       $("#add-question").on("submit",function(e) {
           e.preventDefault();
+          $("#question-btn").html("<span class='spinner-border'></span>");
+          $("#question-btn").attr("disabled", true);
           $.ajax({
             url: "../includes/quiz.inc.php",
             type: "POST",
@@ -306,6 +308,8 @@ if (isset($_POST['view'])) {
                 $("#myModal1").modal("hide");
               }
               toast(data);
+              $("#question-btn").html("Add Question");
+              $("#question-btn").attr("disabled",false);
             }
           });
       });
@@ -364,6 +368,8 @@ if (isset($_POST['view'])) {
     })
     // Submit Import Question
     $("#checkForm").on("submit", function(e) {
+      $("#import-btn").html("<span class='spinner-border'></span>");
+     $("#import-btn").attr("disabled", true);
       e.preventDefault();
       $.ajax({
         url:"../includes/quiz.inc.php",
@@ -377,8 +383,10 @@ if (isset($_POST['view'])) {
             $("#myModal2").modal("hide");
             getQuestionsbyFolder();
             $("#checkAll").prop("checked",false);
-            toast(data);
           }
+          toast(data);
+          $("#import-btn").html("Student");
+          $("#import-btn").attr("disabled",false);
         }
       })
     })

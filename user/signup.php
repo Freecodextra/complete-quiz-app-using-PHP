@@ -120,7 +120,6 @@
         </a>
       </div>
   </footer>
-  <script src="../public/app.js"></script>
   <script src="../public/toast.js"></script>
   <script src="../public/loader.js"></script>
   <script>

@@ -123,7 +123,7 @@ if (isset($_POST['view'])) {
               <!-- Hidden Input -->
               <input type="hidden" name="hidden" id="course" value="<?php echo $data['id']; ?>">
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary" onclick="addTopic()">Add Topic</button>
+                <button type="submit" class="btn btn-primary" id="topic-btn" onclick="addTopic()">Add Topic</button>
               </div>
             </div>
 
@@ -157,7 +157,7 @@ if (isset($_POST['view'])) {
               <!-- Hidden Input -->
               <input type="hidden" name="e-course" id="e-course" value="<?php echo $data['id']; ?>">
                 <div class="d-grid shadow-sm">
-                  <button type="submit" class="btn btn-primary" onclick="enrollUser()">Enroll</button>
+                  <button type="submit" class="btn btn-primary" id="enroll-btn" onclick="enrollUser()">Enroll</button>
                 </div>
             </div>
 
@@ -224,6 +224,8 @@ if (isset($_POST['view'])) {
       })
     //============================= ADD TOPIC =========================
     function addTopic() {
+      $("#topic-btn").html("<span class='spinner-border'></span>");
+  $("#topic-btn").attr("disabled", true);
       var addTopic = true;
       var course = $("#course").val();
       var topicName = $("#topicName").val();
@@ -240,9 +242,11 @@ if (isset($_POST['view'])) {
           $("#topicDesc").val("");
           $("#myModal1").modal("hide");
           topicNum();
+          displayTable();
         }
         toast(data);
-        displayTable();
+        $("#topic-btn").html("Add Topic");
+     	$("#topic-btn").attr("disabled",false);
       });
     }
     // ========================= GET ALL StudentS =====================
@@ -261,6 +265,8 @@ if (isset($_POST['view'])) {
     }
     // enroll user
     function enrollUser() {
+      $("#enroll-btn").html("<span class='spinner-border'></span>");
+  $("#enroll-btn").attr("disabled", true);
       var enroll = true;
       var student = $("#students").val();
       var courseId = $("#e-course").val();
@@ -276,6 +282,8 @@ if (isset($_POST['view'])) {
           $("#myModal2").modal("hide");
         }
         toast(data);
+        $("#enroll-btn").html("Enroll");
+     	$("#enroll-btn").attr("disabled",false);
       });
     }
     // unenroll user

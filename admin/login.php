@@ -32,10 +32,6 @@
       elseif ($_GET['error'] == "wrongpwd") {
         echo '<div id="snackbar">Incorrect Password!</div>';
       }
-     elseif ($_GET['error'] == "success") {
-      echo '<div id="snackbar">Login Success!</div>';
-      header("refresh:2;url=./index.php");
-     }
     }  
   ?>
   <div class="wrapper container-fluid">

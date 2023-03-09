@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
                    $date = getdate()[0];
                    $id = $row['id'];
                    $sql = "UPDATE teachers SET last_login = $date WHERE id = $id;";
-                   header("Location: ../teacher/login.php?error=success&teacher=$teacher_id");
+                   header("Location: ../teacher/index.php?teacher=$teacher_id");
                     exit();
                 } else {
                     header("Location: ../teacher/login.php?error=wrongpwd");

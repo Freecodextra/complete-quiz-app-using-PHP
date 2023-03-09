@@ -161,7 +161,7 @@ if (isset($_SESSION['teacher'])) {
                 </select>
               </div>
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary">Add Question</button>
+                <button type="submit" class="btn btn-primary" id="question-btn">Add Question</button>
               </div>
             </form>
           </div>
@@ -250,7 +250,7 @@ if (isset($_SESSION['teacher'])) {
               <!-- Hidden Input -->
               <input type="hidden" name="hidden" id="hidden">
               <div class="d-grid shadow-sm">
-                <button type="submit" class="btn btn-primary">Update Question</button>
+                <button type="submit" class="btn btn-primary" id="u-question-btn">Update Question</button>
               </div>
             </form>
           </div>
@@ -309,6 +309,8 @@ if (isset($_SESSION['teacher'])) {
     // ====================== ADD QUESTION ======================
     $("#add-question").on("submit", function(e) {
       e.preventDefault();
+      $("#question-btn").html("<span class='spinner-border'></span>");
+      $("#question-btn").attr("disabled", true);
       $.ajax({
         url: "../includes/questions.inc.php",
         type: "POST",
@@ -335,6 +337,8 @@ if (isset($_SESSION['teacher'])) {
           }
           toast(data);
           questionNum();
+          $("#question-btn").html("Add Question");
+          $("#question-btn").attr("disabled",false);
         }
       });
     });
@@ -363,6 +367,8 @@ if (isset($_SESSION['teacher'])) {
 
     $("#edit-question").on("submit", function(e) {
       e.preventDefault();
+      $("#u-question-btn").html("<span class='spinner-border'></span>");
+     $("#u-question-btn").attr("disabled", true);
       $.ajax({
         url: "../includes/questions.inc.php",
         type: "POST",
@@ -388,6 +394,8 @@ if (isset($_SESSION['teacher'])) {
             displayTable();
           }
           toast(data);
+          $("#u-question-btn").html("Update Question");
+          $("#u-question-btn").attr("disabled",false);
         }
       });
     });

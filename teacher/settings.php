@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if (isset($_SESSION['teacher'])) {
   require("../includes/db.inc.php");
@@ -11,11 +11,12 @@ if (isset($_SESSION['teacher'])) {
       $data = $row;
     }
   }
-  function logoSrc() {
+  function logoSrc()
+  {
     $file = "../images/logo*";
     $fileSearch = glob($file);
     return $fileSearch[0];
-    }
+  }
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -34,9 +35,9 @@ if (isset($_SESSION['teacher'])) {
     <!-- =================== DATA TABLE CDN ======================= -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
-  <!-- ===================== TOASTIFY LIBRARY ==================== -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- ===================== TOASTIFY LIBRARY ==================== -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <link rel="stylesheet" href="../public/style.css">
     <link rel="shortcut icon" href="<?php echo logoSrc() ?>" type="image/x-icon">
@@ -44,10 +45,10 @@ if (isset($_SESSION['teacher'])) {
   </head>
 
   <body>
-    <?php 
-    require("./header.php"); 
+    <?php
+    require("./header.php");
     require("./navbar.php");
-    
+
     ?>
     <main>
       <div class="head" id="settings">
@@ -73,37 +74,43 @@ if (isset($_SESSION['teacher'])) {
                 </div>
                 <!-- Hidden Input -->
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                <button type="submit" name="account" class="btn">Save Details</button>
+                <button type="submit" name="account" class="btn" id="account-btn">Save Details</button>
               </form>
             </div>
             <div class="col-md-3 shadow-sm">
               <h4>Personal</h4>
               <hr>
-                <div class="mb-3">
-                  <label for="fNmae" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="fName" name="fName" placeholder="First Name" autocomplete="off" value="<?php echo $data['fName']; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="lName" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" id="lName" name="lName" placeholder="Last Name" autocomplete="off" value="<?php echo $data['lName']; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="city" class="form-label">City/Town</label>
-                  <input type="text" class="form-control" id="city" name="city" placeholder="City/Town" autocomplete="off" value="<?php echo $data['city']; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="phone" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="<?php echo $data['phone']; ?>">
-                </div>
-                <div class="mb-3">
-                  <label for="sex" class="form-label">Sex</label>
-                  <select name="sex" id="sex" class="form-control">
-                    <option value="Male" <?php if($data['sex'] === "Male"){echo "selected";} ?>>Male</option>
-                    <option value="Female" <?php if($data['sex'] === "Female"){echo "selected";} ?>>Female</option>
-                    <option value="Others" <?php if($data['sex'] === "Others"){echo "selected";} ?>>Others</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn" onclick="editPersonal(<?php echo $data['id']; ?>)">Save Details</button>
+              <div class="mb-3">
+                <label for="fNmae" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="fName" name="fName" placeholder="First Name" autocomplete="off" value="<?php echo $data['fName']; ?>">
+              </div>
+              <div class="mb-3">
+                <label for="lName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lName" name="lName" placeholder="Last Name" autocomplete="off" value="<?php echo $data['lName']; ?>">
+              </div>
+              <div class="mb-3">
+                <label for="city" class="form-label">City/Town</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="City/Town" autocomplete="off" value="<?php echo $data['city']; ?>">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="<?php echo $data['phone']; ?>">
+              </div>
+              <div class="mb-3">
+                <label for="sex" class="form-label">Sex</label>
+                <select name="sex" id="sex" class="form-control">
+                  <option value="Male" <?php if ($data['sex'] === "Male") {
+                                          echo "selected";
+                                        } ?>>Male</option>
+                  <option value="Female" <?php if ($data['sex'] === "Female") {
+                                            echo "selected";
+                                          } ?>>Female</option>
+                  <option value="Others" <?php if ($data['sex'] === "Others") {
+                                            echo "selected";
+                                          } ?>>Others</option>
+                </select>
+              </div>
+              <button type="submit" class="btn" id="personal-btn" onclick="editPersonal(<?php echo $data['id']; ?>)">Save Details</button>
             </div>
             <div class="col-md-3 shadow-sm">
               <h4>Password</h4>
@@ -113,96 +120,109 @@ if (isset($_SESSION['teacher'])) {
                 <label for="cpwd" class="form-label">Current Password</label>
                 <input type="password" class="form-control" id="cpwd" placeholder="New Password">
               </div>
-                <div class="mb-3">
-                  <label for="newpwd" class="form-label">New Password</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="New Password">
-                </div>
-                <div class="mb-3">
-                  <label for="rnewpwd" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" id="rpwd" placeholder="Confirm Password">
-                </div>
-                <button type="submit" class="btn" onclick="editPassword(<?php echo $data['id']; ?>)">Save Details</button>
+              <div class="mb-3">
+                <label for="newpwd" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="pwd" placeholder="New Password">
+              </div>
+              <div class="mb-3">
+                <label for="rnewpwd" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="rpwd" placeholder="Confirm Password">
+              </div>
+              <button type="submit" class="btn" id="password-btn" onclick="editPassword(<?php echo $data['id']; ?>)">Save Details</button>
             </div>
           </div>
         </div>
       </div>
     </main>
     </div>
-    <?php 
+    <?php
     require("../admin/footer.php");
     ?>
     <script src="../public/app.js"></script>
     <script src="../public/loader.js"></script>
     <script>
       // ====================== ACCOUNT ======================
-      $("#account").on("submit",function(e) {
-          e.preventDefault();
-          $.ajax({
-            url: "../includes/teachers.inc.php",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (data,status) {
-              toast(data);
-            }
-          });
+      $("#account").on("submit", function(e) {
+        e.preventDefault();
+        $("#account-btn").html("<span class='spinner-border'></span>");
+        $("#account-btn").attr("disabled", true);
+        $.ajax({
+          url: "../includes/teachers.inc.php",
+          type: "POST",
+          data: new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function(data, status) {
+            toast(data);
+            $("#account-btn").html("Save Details");
+            $("#account-btn").attr("disabled", false);
+          }
+        });
       });
       // ================== PERSONAL =======================
       function editPersonal(hidden) {
+        $("#personal-btn").html("<span class='spinner-border'></span>");
+        $("#personal-btn").attr("disabled", true);
         var personal = true;
         var fName = $("#fName").val();
         var lName = $("#lName").val();
         var city = $("#city").val();
         var phone = $("#phone").val();
         var sex = $("#sex").val();
-        $.post("../includes/teachers.inc.php",{
-          personal:personal,
-          hidden:hidden,
-          fName:fName,
-          lName:lName,
-          city:city,
-          phone:phone,
-          sex:sex
+        $.post("../includes/teachers.inc.php", {
+          personal: personal,
+          hidden: hidden,
+          fName: fName,
+          lName: lName,
+          city: city,
+          phone: phone,
+          sex: sex
         }, function(data, status) {
           toast(data);
+          $("#personal-btn").html("Save Details");
+          $("#personal-btn").attr("disabled", false);
         });
       }
       //  ================== PASSWORD =======================
       function editPassword(id) {
+        $("#password-btn").html("<span class='spinner-border'></span>");
+        $("#password-btn").attr("disabled", true);
         var password = true;
         var cpwd = $("#cpwd").val();
         var pwd = $("#pwd").val();
         var rpwd = $("#rpwd").val();
-        $.post("../includes/teacher-reset-pwd.inc.php",{
-          id:id,
-          password:password,
-          pwd:pwd,
-          rpwd:rpwd
-        }, function (data, status) {
+        $.post("../includes/teacher-reset-pwd.inc.php", {
+          id: id,
+          password: password,
+          pwd: pwd,
+          rpwd: rpwd
+        }, function(data, status) {
           $("#pwd").val("");
           $("#rpwd").val("");
           toast(data);
+          $("#password-btn").html("Save Details");
+          $("#password-btn").attr("disabled", false);
         });
       }
 
-          // ===================== TOASTIFY =========================
-    function toast(x) {
-      Toastify({
-        text: x,
-        duration: 2000,
-        close: true,
-        style: {
-          background: "linear-gradient(to right, #4649ff, #1d1ce5)",
-        }
-      }).showToast()
-    }
+      // ===================== TOASTIFY =========================
+      function toast(x) {
+        Toastify({
+          text: x,
+          duration: 2000,
+          close: true,
+          style: {
+            background: "linear-gradient(to right, #4649ff, #1d1ce5)",
+          }
+        }).showToast()
+      }
     </script>
   </body>
+
   </html>
-<?php 
+<?php
 } else {
   header("Location: ./login.php");
- }
+}
 ?>
