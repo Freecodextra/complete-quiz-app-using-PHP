@@ -455,7 +455,7 @@ if (isset($_SESSION['teacher'])) {
       var teacherId = <?php echo $teacher_id; ?>;
       $.post("../includes/teacher-courses.inc.php", {
         show: show,
-        teacherId, teacherId
+        teacherId: teacherId
       }, function(data, status) {
         table.ajax.reload();
       });

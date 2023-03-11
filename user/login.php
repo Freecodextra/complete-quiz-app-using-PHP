@@ -23,6 +23,7 @@
 </head>
 <body>
 <div class="loading">
+  <div class="loading-cover"></div>
     <h1><i class="bi bi-arrow-clockwise"></i></h1>
     Loading...</div>
   <?php 

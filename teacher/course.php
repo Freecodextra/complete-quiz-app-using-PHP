@@ -221,7 +221,7 @@ if (isset($_GET['course'])) {
           links.pop();
         }
         links.pop();
-        window.location.assign(links.join("/")+"/topics.php?teacher=<?php echo $teacher_id; ?>&course=<?php echo $id; ?>" );
+        window.location.assign(links.join("/")+"/topics.php?teacher=<?php echo $teacher_id; ?>" );
       })
     //============================= ADD TOPIC =========================
     function addTopic() {

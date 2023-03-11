@@ -61,7 +61,6 @@
   <?php 
     require("./footer.php");
     ?>
-  <script src="../public/app.js"></script>
   <script src="../public/toast.js"></script>
   <script><?php if (isset($_GET['error'])) {
    echo "snackBar();";

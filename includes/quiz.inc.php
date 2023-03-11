@@ -132,7 +132,54 @@ if (isset($_POST['quiz'])) {
     } else {
         echo "Select at least one question";
     }
-} elseif (isset($_POST['show'])) {
+} elseif(isset($_POST['viewQuestion'])) {
+    $quiz_id = $_POST['quizId'];
+    $sql = "SELECT * FROM questions WHERE quiz_id = $quiz_id;";
+    $result = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result) > 0) {
+        $data = array();
+        $x = 0;
+        while($row = mysqli_fetch_assoc($result)) {
+            $array = array();
+            $x++;
+            $array[] = $x;
+            $question_id = $row['id'];
+            $question = $row['question'];
+            $array[] = $question;
+            // Get Course Name
+            $course = $row['course_id'];
+            $course_sql = "SELECT * FROM courses WHERE id = $course;";
+            $course_result = mysqli_query($conn, $course_sql);
+            $course_row = mysqli_fetch_assoc($course_result);
+            $course_short_name = $course_row['course_short_name'];
+            $array[] = $course_short_name;
+            // Get Topic Name
+            $topic = $row['topic_id'];
+            if ($topic > 0) {
+                $topic_sql = "SELECT * FROM topics WHERE id = $topic;";
+                $topic_result = mysqli_query($conn, $topic_sql);
+                $topic_row = mysqli_fetch_assoc($topic_result);
+                $topic_name = $topic_row['topic_name'];
+            }
+            $array[] = $topic == 0 ? "default" : $topic_name;
+            $array[] = "Multichoice";
+            $array[] = '<td>•••<div class="links shadow-sm">
+            <button type="submit" name="delete" value="' . $question_id . '" onclick="deleteQuestion(' . $question_id . ')">Delete Question</button>
+          </div></td>';
+          $data[] = $array;
+        }
+        echo json_encode($data);
+    } else {
+        echo "No Questions Found";
+    }
+} elseif(isset($_POST['deleteQuestion'])) {
+    $question_id = $_POST['questionId'];
+    $sql = "UPDATE questions SET topic_id = 0, quiz_id = 0 WHERE id = $question_id";
+    if(mysqli_query($conn, $sql)) {
+        echo "Deleted Successfully";
+    }
+}
+ elseif (isset($_POST['show'])) {
     $id = $_POST['quizId'];
     $sql = "SELECT * FROM attempted WHERE quiz_id = '$id'";
     $result = mysqli_query($conn, $sql);

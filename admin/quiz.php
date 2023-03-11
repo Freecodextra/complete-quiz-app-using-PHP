@@ -102,6 +102,9 @@ if (isset($_SESSION['admin'])) {
           <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal1">
             Add New Question
           </button>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal3">
+            View Questions
+          </button>
           <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal2">Import From Question Bank</button>
         </div>
         <!-- =================== MODAL============================== -->
@@ -229,6 +232,48 @@ if (isset($_SESSION['admin'])) {
             </div>
           </div>
         </div>
+                <!-- =========================== MODAL 3 ============================ -->
+          <div class="modal fade" id="myModal3">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">View Questions</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body" style="max-height: 500px; overflow:auto;">
+                  <div class="table-data shadow-sm">
+                    <table width="100%" class="table table-hover table-borderless">
+                      <div class="alert alert-primary">
+                        <strong><?php echo $topic_name . " - " . $quiz_name; ?> QUestions</strong>
+                      </div>
+                      <thead>
+                        <tr>
+                          <td>#</td>
+                          <td>Question</td>
+                          <td>Course</td>
+                          <td>Topic</td>
+                          <td>Type</td>
+                          <td>Action</td>
+                        </tr>
+                      </thead>
+                      <tbody id="v-tbody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        <!-- </div> -->
         <div class="container-fluid">
           <div class="row">
 
@@ -268,6 +313,7 @@ if (isset($_SESSION['admin'])) {
           attemptNum();
           averageScore();
           percentagePass();
+          viewQuestion();
         });
         var table = $('#teacher-table').DataTable({
           ajax: "../text/attempts.txt"
@@ -387,11 +433,49 @@ if (isset($_SESSION['admin'])) {
                 $("#checkAll").prop("checked", false);
               }
               toast(data);
+              viewQuestion();
               $("#import-btn").html("Import Questions");
               $("#import-btn").attr("disabled", false);
             }
           })
         })
+ //============================ VIEW QUESTION ======================================
+        function viewQuestion() {
+          var viewQuestion = true;
+          var quizId = $("#quiz").val();
+          var input = '';
+          $.post("../includes/quiz.inc.php", {
+            viewQuestion: viewQuestion,
+            quizId: quizId
+          }, function(data, status) {
+            if(data = "No Questions Found") {
+              input = "No Questions Found";
+            } else {
+              var results = JSON.parse(data);
+              results.forEach(result => {
+                var hash = result[0];
+                var question = result[1];
+                var course = result[2];
+                var topic = result[3];
+                var type = result[4];
+                var action = result[5];
+                input += `<tr><td>${hash}</td><td>${question}</td><td>${course}</td><td>${topic}</td><td>${type}</td><td>${action}</td></tr>`;
+              })
+            }
+            $("#v-tbody").html(input);
+          });
+        }
+        function deleteQuestion(id) {
+          var deleteQuestion = true;
+          var questionId = id;
+          $.post("../includes/quiz.inc.php", {
+            questionId:questionId,
+            deleteQuestion:deleteQuestion
+          }, function(data, success) {
+            toast(data);
+            viewQuestion();
+          })
+        }
         //============================= DELETE ATTEMPT =========================
         function deleteAttempt(id) {
           var remove = true;
