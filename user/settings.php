@@ -70,7 +70,7 @@ if (isset($_GET['user'])) {
                 </div>
                 <!-- Hidden Input -->
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                <button type="submit" name="account" class="btn">Save Details</button>
+                <button type="submit" name="account" class="btn" id="account-btn">Save Details</button>
               </form>
             </div>
             <div class="col-md-3 shadow-sm">
@@ -107,11 +107,11 @@ if (isset($_GET['user'])) {
                 </select>
               </div>
               <div class="mb-3">
-                  <label for="level" class="form-label">Level</label>
-                  <select name="level" id="level" class="form-control">
-                  </select>
-                </div>
-              <button type="submit" class="btn" onclick="editPersonal(<?php echo $data['id']; ?>)">Save Details</button>
+                <label for="level" class="form-label">Level</label>
+                <select name="level" id="level" class="form-control">
+                </select>
+              </div>
+              <button type="submit" class="btn" onclick="editPersonal(<?php echo $data['id']; ?>)" id="personal-btn">Save Details</button>
             </div>
             <div class="col-md-3 shadow-sm">
               <h4>Password</h4>
@@ -129,7 +129,7 @@ if (isset($_GET['user'])) {
                 <label for="rnewpwd" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="rpwd" placeholder="Confirm Password">
               </div>
-              <button type="submit" class="btn" onclick="editPassword(<?php echo $data['id']; ?>)">Save Details</button>
+              <button type="submit" class="btn" onclick="editPassword(<?php echo $data['id']; ?>)" id="password-btn">Save Details</button>
             </div>
           </div>
         </div>
@@ -148,6 +148,8 @@ if (isset($_GET['user'])) {
       // ====================== ACCOUNT ======================
       $("#account").on("submit", function(e) {
         e.preventDefault();
+        $("#account-btn").html("<span class='spinner-border'></span>");
+        $("#account-btn").attr("disabled", true);
         $.ajax({
           url: "../includes/students.inc.php",
           type: "POST",
@@ -157,11 +159,15 @@ if (isset($_GET['user'])) {
           processData: false,
           success: function(data, status) {
             toast(data);
+            $("#account-btn").html("Save Details");
+            $("#account-btn").attr("disabled", false);
           }
         });
       });
       // ================== PERSONAL =======================
       function editPersonal(hidden) {
+        $("#personal-btn").html("<span class='spinner-border'></span>");
+        $("#personal-btn").attr("disabled", true);
         var personal = true;
         var fName = $("#fName").val();
         var lName = $("#lName").val();
@@ -177,13 +183,17 @@ if (isset($_GET['user'])) {
           city: city,
           phone: phone,
           sex: sex,
-          level:level
+          level: level
         }, function(data, status) {
           toast(data);
+          $("#personal-btn").html("Save Details");
+          $("#personal-btn").attr("disabled", false);
         });
       }
       //  ================== PASSWORD =======================
       function editPassword(id) {
+        $("#password-btn").html("<span class='spinner-border'></span>");
+        $("#password-btn").attr("disabled", true);
         var password = true;
         var cpwd = $("#cpwd").val();
         var pwd = $("#pwd").val();
@@ -191,30 +201,32 @@ if (isset($_GET['user'])) {
         $.post("../includes/reset-pwd.inc.php", {
           id: id,
           password: password,
-          cpwd:cpwd,
+          cpwd: cpwd,
           pwd: pwd,
           rpwd: rpwd
         }, function(data, status) {
           $("#pwd").val("");
           $("#rpwd").val("");
           toast(data);
+          $("#password-btn").html("Save Details");
+          $("#password-btn").attr("disabled", false);
         });
       }
-    // ========================= GET ALL CLASSES =====================
-    function getClasses() {
-      var fetchClass = true;
-      $.post("../includes/classes.inc.php", {
-        fetchClass: fetchClass
-      }, function(data, status) {
-        var results = JSON.parse(data);
-        var x = '<option value="-1">--- Select Class ---</option> <option value="0">default</option>';
-        results.forEach(result => {
-          x += `<option value="${Number(result.id)}">${result.class_name}</option>`;
+      // ========================= GET ALL CLASSES =====================
+      function getClasses() {
+        var fetchClass = true;
+        $.post("../includes/classes.inc.php", {
+          fetchClass: fetchClass
+        }, function(data, status) {
+          var results = JSON.parse(data);
+          var x = '<option value="-1">--- Select Class ---</option> <option value="0">default</option>';
+          results.forEach(result => {
+            x += `<option value="${Number(result.id)}">${result.class_name}</option>`;
+          });
+          $("#level").html(x);
+          $("#level").val(<?php echo $data['level']; ?>);
         });
-        $("#level").html(x);
-        $("#level").val(<?php echo $data['level']; ?>);
-      });
-    }
+      }
       // ===================== TOASTIFY =========================
       function toast(x) {
         Toastify({

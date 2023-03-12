@@ -354,6 +354,7 @@ if (isset($_SESSION['admin'])) {
                 $("#opt5").val("");
                 $("#answer").val(-1);
                 $("#myModal1").modal("hide");
+                viewQuestion();
               }
               toast(data);
               $("#question-btn").html("Add Question");
@@ -430,10 +431,10 @@ if (isset($_SESSION['admin'])) {
               if (data = "Imported Successfully") {
                 $("#myModal2").modal("hide");
                 getQuestionsbyFolder();
+                viewQuestion();
                 $("#checkAll").prop("checked", false);
               }
               toast(data);
-              viewQuestion();
               $("#import-btn").html("Import Questions");
               $("#import-btn").attr("disabled", false);
             }

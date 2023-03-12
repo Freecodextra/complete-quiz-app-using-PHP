@@ -354,9 +354,9 @@ if (isset($_SESSION['teacher'])) {
                 $("#opt5").val("");
                 $("#answer").val(-1);
                 $("#myModal1").modal("hide");
+                viewQuestion();
               }
               toast(data);
-              viewQuestion();
               $("#question-btn").html("Add Question");
               $("#question-btn").attr("disabled", false);
             }
@@ -468,6 +468,7 @@ if (isset($_SESSION['teacher'])) {
               if (data = "Imported Successfully") {
                 $("#myModal2").modal("hide");
                 getQuestionsbyFolder();
+                viewQuestion();
                 $("#checkAll").prop("checked", false);
               }
               toast(data);

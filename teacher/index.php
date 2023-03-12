@@ -62,39 +62,38 @@ if (isset($_SESSION['teacher'])) {
   $result6 = mysqli_query($conn, $sql6);
   $quiz_num = 0;
   if (mysqli_num_rows($result6) > 0) {
-    while($row6 = mysqli_fetch_assoc($result6)) {
+    while ($row6 = mysqli_fetch_assoc($result6)) {
       $course_id = $row6['course_id'];
       $sql7 = "SELECT * FROM quizes WHERE id = '$course_id';";
       $result7 = mysqli_query($conn, $sql7);
-      if(mysqli_num_rows($result7) > 0) {
-        while($row7 = mysqli_fetch_assoc($result7)) {
+      if (mysqli_num_rows($result7) > 0) {
+        while ($row7 = mysqli_fetch_assoc($result7)) {
           $quiz_num++;
         }
       }
     }
   }
 }
-    // get image
-    $src;
-    $id = null;
-    if(isset($_SESSION['teacher'])) {
-      $id = $_SESSION['teacher'];
-    }
-    $file = "../img-uploads/teacher". $id . "*";
-    $fileSearch = glob($file);
-    if (count($fileSearch) > 0) {      
-      $fileExt = explode(".", $fileSearch[0]);
-      $fileActExt = end($fileExt);
-      $file_path = "../img-uploads/teacher" . $id .".". $fileActExt;
-      if(file_exists($file_path)) {
-        $src = $file_path;
-      }
-      else {
-        $src = "../images/avatar.png";
-      }
+// get image
+$src;
+$id = null;
+if (isset($_SESSION['teacher'])) {
+  $id = $_SESSION['teacher'];
+  $file = "../img-uploads/teacher" . $id . "*";
+  $fileSearch = glob($file);
+  if (count($fileSearch) > 0) {
+    $file_path = $fileSearch[0];
+    if (file_exists($file_path)) {
+      $src = $file_path;
     } else {
       $src = "../images/avatar.png";
     }
+  } else {
+    $src = "../images/avatar.png";
+  }
+} else {
+  $src = "../images/avatar.png";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,8 +141,8 @@ if (isset($_SESSION['teacher'])) {
                     <p>Number Of Courses</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['teacher'])) {
-                    echo $course_num;
-                  } ?></div>
+                                        echo $course_num;
+                                      } ?></div>
                 </div>
               </div>
               <div class="stat col-sm-4">
@@ -153,8 +152,8 @@ if (isset($_SESSION['teacher'])) {
                     <p>Numer Of Students</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['teacher'])) {
-                    echo $student_no;
-                  } ?></div>
+                                        echo $student_no;
+                                      } ?></div>
                 </div>
               </div>
               <div class="stat col-sm-4">
@@ -164,8 +163,8 @@ if (isset($_SESSION['teacher'])) {
                     <p>Number of Quizes</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['teacher'])) {
-                    echo $quiz_num;
-                  } ?></div>
+                                        echo $quiz_num;
+                                      } ?></div>
                 </div>
               </div>
             </div>
@@ -185,14 +184,14 @@ if (isset($_SESSION['teacher'])) {
                 <?php
                 foreach ($myCourses as $myCourse) {
                   $src = "../images/" . $myCourse[3] . rand(1, 2) . ".png";
-                  if(!file_exists($src)) {
+                  if (!file_exists($src)) {
                     $src = "../images/dafault.png";
                   }
                   echo '
                       <div class="col-md-4">
-                      <a href="./course.php?course=' . $myCourse[0] . '&teacher='.$id.'">
+                      <a href="./course.php?course=' . $myCourse[0] . '&teacher=' . $id . '">
                       <div class="image">
-                        <img src="'.$src.'" alt="' . $myCourse[3] . '">
+                        <img src="' . $src . '" alt="' . $myCourse[3] . '">
                       </div>
                       <div class="head">' . $myCourse[2] . '</div>
                       <div class="text">' . $myCourse[1] . '</div>

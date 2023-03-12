@@ -72,38 +72,35 @@ if (isset($_SESSION['id'])) {
   $leaderboard = 0;
   $sql5 = "SELECT * FROM leaderboard ORDER BY `percentage` DESC;";
   $result5 = mysqli_query($conn, $sql5);
-  if(mysqli_num_rows($result5)) {
-    while($row5 = mysqli_fetch_assoc($result5)) {
+  if (mysqli_num_rows($result5)) {
+    while ($row5 = mysqli_fetch_assoc($result5)) {
       $x++;
       $f_id = $row5['user_id'];
-      if($id3 == $f_id) {
+      if ($id3 == $f_id) {
         $leaderboard = $x;
       }
     }
   }
 }
-    // get image
-    $src;
-    if(isset($_SESSION['id'])) {   
-      $id = $_SESSION['id'];
-    $file = "../img-uploads/student". $id . "*";
-    $fileSearch = glob($file);
-    if (count($fileSearch) > 0) {      
-      $fileExt = explode(".", $fileSearch[0]);
-      $fileActExt = end($fileExt);
-      $file_path = "../img-uploads/student" . $id .".". $fileActExt;
-      if(file_exists($file_path)) {
-        $src = $file_path;
-      }
-      else {
-        $src = "../images/avatar.png";
-      }
+// get image
+$src;
+if (isset($_SESSION['id'])) {
+  $id = $_SESSION['id'];
+  $file = "../img-uploads/student" . $id . "*";
+  $fileSearch = glob($file);
+  if (count($fileSearch) > 0) {
+    $file_path = $fileSearch[0];
+    if (file_exists($file_path)) {
+      $src = $file_path;
     } else {
       $src = "../images/avatar.png";
     }
   } else {
     $src = "../images/avatar.png";
   }
+} else {
+  $src = "../images/avatar.png";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,8 +148,8 @@ if (isset($_SESSION['id'])) {
                     <p>Number Of Courses</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['id'])) {
-                    echo $course_num;
-                  } ?></div>
+                                        echo $course_num;
+                                      } ?></div>
                 </div>
               </div>
               <div class="stat col-sm-4">
@@ -162,8 +159,8 @@ if (isset($_SESSION['id'])) {
                     <p>Quiz Attempted</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['id'])) {
-                    echo $quiz_attempted;
-                  } ?></div>
+                                        echo $quiz_attempted;
+                                      } ?></div>
                 </div>
               </div>
               <div class="stat col-sm-4">
@@ -173,8 +170,8 @@ if (isset($_SESSION['id'])) {
                     <p>Leaderboard Ranking</p>
                   </div>
                   <div class="number"><?php if (isset($_SESSION['id'])) {
-                    echo $leaderboard;
-                  } ?></div>
+                                        echo $leaderboard;
+                                      } ?></div>
                 </div>
               </div>
             </div>
@@ -187,7 +184,9 @@ if (isset($_SESSION['id'])) {
             <h2>Popular Courses</h2>
           </div>
           <div class="courses">
-            <a href="./courses.php?user=<?php if(isset($_GET['user'])) {echo $user_id;} ?>" class="all-course">All Courses</a>
+            <a href="./courses.php?user=<?php if (isset($_GET['user'])) {
+                                          echo $user_id;
+                                        } ?>" class="all-course">All Courses</a>
             <div class="row d-flex align-items-start justify-content-center">
               <?php
               foreach ($popularCourses as $popularCourse) {
@@ -199,7 +198,7 @@ if (isset($_SESSION['id'])) {
                 }
                 echo '
                     <div class="col-md-4">
-                    <a href="./course.php?course=' . $popularCourse[0] . '&user='.$id.'">
+                    <a href="./course.php?course=' . $popularCourse[0] . '&user=' . $id . '">
                     <div class="image">
                       <img src="../images/' . $popularCourse[3] . rand(1, 2) . '.png" alt="' . $popularCourse[3] . '">
                     </div>
@@ -225,14 +224,14 @@ if (isset($_SESSION['id'])) {
                 <?php
                 foreach ($myCourses as $myCourse) {
                   $src = "../images/" . $myCourse[3] . rand(1, 2) . ".png";
-                  if(!file_exists($src)) {
+                  if (!file_exists($src)) {
                     $src = "../images/dafault.png";
-                  }                  
+                  }
                   echo '
                       <div class="col-md-4">
-                      <a href="./course.php?course=' . $myCourse[0] . '&user='.$id.'">
+                      <a href="./course.php?course=' . $myCourse[0] . '&user=' . $id . '">
                       <div class="image">
-                        <img src="'.$src.'" alt="' . $myCourse[3] . '">
+                        <img src="' . $src . '" alt="' . $myCourse[3] . '">
                       </div>
                       <div class="head">' . $myCourse[2] . '</div>
                       <div class="text">' . $myCourse[1] . '</div>

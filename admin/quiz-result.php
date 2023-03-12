@@ -147,9 +147,7 @@ if (isset($_POST['view'])) {
                 $file = "../question-img/question" . $question_id . "*";
                 $fileSearch = glob($file);
                 if (count($fileSearch) > 0) {
-                  $fileExt = explode(".", $fileSearch[0]);
-                  $fileActExt = end($fileExt);
-                  $file_path = "../question-img/question" . $question_id . "." . $fileActExt;
+                  $file_path = $fileSearch[0];
                   if (file_exists($file_path)) {
                     $src = $file_path;
                   } else {

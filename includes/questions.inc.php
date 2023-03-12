@@ -199,12 +199,6 @@ if (isset($_POST['question'])) {
                     }
                 }
             }
-            // delete previous image
-            $prev_image = "../question-img/question" . $id . "*";
-            $findFile = glob($prev_image);
-            if (count($findFile) > 0) {
-                unlink($findFile[0]);
-            }
             // Insert Image
             $img_name = $image['name'];
             $img_error = $image['error'];
@@ -217,8 +211,14 @@ if (isset($_POST['question'])) {
             if (in_array($img_ext, $accept)) {
                 if ($img_error === 0) {
                     if ($img_size < 10000000) {
+                        // delete previous image
+                        $prev_image = "../question-img/question" . $id . "*";
+                        $findFile = glob($prev_image);
+                        if (count($findFile) > 0) {
+                            unlink($findFile[0]);
+                        }
                         $img_des = "../question-img/";
-                        $img_new_name = "question" . $question_id . "." . $img_ext;
+                        $img_new_name = "question" . $question_id . rand() ."." . $img_ext;
                         $img_new_des = $img_des . $img_new_name;
                         move_uploaded_file($img_tmp_name, $img_new_des);                        
                         $img_sql = "UPDATE questions SET `image` = 1 WHERE id = '$question_id';";

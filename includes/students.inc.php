@@ -171,8 +171,14 @@ if (isset($_POST['addStudent'])) {
             if (in_array($img_ext, $accept)) {
                 if ($img_error === 0) {
                     if ($img_size < 10000000) {
+                        // delete previous image
+                        $prev_image = "../img-uploads/student" . $id . "*";
+                        $findFile = glob($prev_image);
+                        if (count($findFile) > 0) {
+                            unlink($findFile[0]);
+                        }
                         $img_des = "../img-uploads/";
-                        $img_new_name = "student" . $id . "." . $img_ext;
+                        $img_new_name = "student" . $id . rand() . "." . $img_ext;
                         $img_new_des = $img_des . $img_new_name;
                         move_uploaded_file($img_tmp_name, $img_new_des);
                         // Query Database
