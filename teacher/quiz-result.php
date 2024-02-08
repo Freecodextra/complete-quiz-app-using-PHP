@@ -163,7 +163,6 @@ if (isset($_SESSION['teacher'])) {
             $sql4 = "SELECT * FROM attempts WHERE user_id = '$user_id' AND quiz_id = '$quiz_id' AND question_id = '$x';";
             $result4 = mysqli_query($conn, $sql4);
             $row4 = mysqli_fetch_assoc($result4);
-            $correct = $row4['correct'];
             $answer = $row4['answer'];
             // get options
             $sql5 = "SELECT * FROM options WHERE question_id = '$question_id';";
@@ -180,6 +179,10 @@ if (isset($_SESSION['teacher'])) {
                   <div class="options">';
             $y = 0;
             $alpha = array("", "A", "B", "C", "D", "E", "F", "G", "H");
+            $sql6 = "SELECT * FROM options WHERE question_id = '$question_id' AND answer = 1;";
+            $result6 = mysqli_query($conn, $sql6);
+            $row6 = mysqli_fetch_assoc($result6);
+            $correct = $row6['id'];
             $correct_answer = '';
             while ($row5 = mysqli_fetch_assoc($result5)) {
               $y++;

@@ -11,6 +11,11 @@ if (isset($_SESSION['teacher'])) {
     $quiz_name = $row['quiz_name'];
     $course_id = $row['course_id'];
 
+    $c_sql = "SELECT * FROM courses WHERE id = $course_id";
+    $c_result = mysqli_query($conn, $c_sql);
+    $c_row = mysqli_fetch_assoc($c_result);
+    $real_id = $c_row['id'];
+
     $t_sql = "SELECT * FROM topics WHERE id = $topic_id";
     $t_result = mysqli_query($conn, $t_sql);
     $t_row = mysqli_fetch_assoc($t_result);
@@ -152,7 +157,7 @@ if (isset($_SESSION['teacher'])) {
                   <div class="mb-3">
                     <label for="student" class="form-label">Answer</label>
                     <select name="answer" id="answer" class="form-select">
-                      <option value="0">--- Choose Answer ---</option>
+                      <option value="-1">--- Choose Answer ---</option>
                       <option value="0">Option 1</option>
                       <option value="1">Option 2</option>
                       <option value="2">Option 3</option>
@@ -161,7 +166,7 @@ if (isset($_SESSION['teacher'])) {
                     </select>
                   </div>
                   <!-- Hidden Inputs -->
-                  <input type="hidden" name="course" id="course" value="<?php echo $course_id; ?>">
+                  <input type="hidden" name="course" id="course" value="<?php echo $real_id; ?>">
                   <input type="hidden" name="topic" id="topic" value="<?php echo $topic_id; ?>">
                   <input type="hidden" name="quiz" id="quiz" value="<?php echo $_POST['view']; ?>">
                   <div class="d-grid shadow-sm">
@@ -248,7 +253,7 @@ if (isset($_SESSION['teacher'])) {
                   <div class="table-data shadow-sm">
                     <table width="100%" class="table table-hover table-borderless">
                       <div class="alert alert-primary">
-                        <strong><?php echo $topic_name . " - " . $quiz_name; ?> QUestions</strong>
+                        <strong><?php echo $topic_name . " - " . $quiz_name; ?> Questions</strong>
                       </div>
                       <thead>
                         <tr>
@@ -371,8 +376,8 @@ if (isset($_SESSION['teacher'])) {
             viewQuestion: viewQuestion,
             quizId: quizId
           }, function(data, status) {
-            if(data = "No Questions Found") {
-              input = "No Questions Found";
+            if(data === "No Questions Found") {
+              i$("#v-tbody").html("No Questions Found");
             } else {
               var results = JSON.parse(data);
               results.forEach(result => {

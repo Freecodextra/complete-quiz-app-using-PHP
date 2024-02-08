@@ -6,7 +6,7 @@ if (isset($_GET['quiz']) && $_GET['q']) {
   $user_id = $_GET['user'];
   $date = $_GET['date'];
   $offset = $question_num - 1;
-  // get quiz duration
+  // get quiz duration (60 should be added to the duration for live server)
   $sql6 = "SELECT * FROM quizes WHERE id = $quiz_id;";
   $result6 = mysqli_query($conn, $sql6);
   $row6 = mysqli_fetch_assoc($result6);

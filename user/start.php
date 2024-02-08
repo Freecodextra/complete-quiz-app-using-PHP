@@ -26,6 +26,19 @@ if (isset($_GET['quiz'])) {
   $sql3 = "SELECT * FROM questions WHERE quiz_id = '$quiz_id';";
   $result3 = mysqli_query($conn, $sql3);
   $question_num = mysqli_num_rows($result3);
+
+  function showResultButton($conn,$user_id,$quiz_id) {
+    $sql = "SELECT * FROM attempts WHERE user_id = '$user_id' AND quiz_id = '$quiz_id';";
+    $result = mysqli_query($conn, $sql);
+
+    $sql2 = "SELECT * FROM attempted WHERE user_id = '$user_id' AND quiz_id = '$quiz_id';";
+    $result2 = mysqli_query($conn, $sql2);
+    if (mysqli_num_rows($result2) > 0 && mysqli_num_rows($result)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   function logoSrc()
   {
     $file = "../images/logo*";
@@ -85,7 +98,18 @@ if (isset($_GET['quiz'])) {
             <p><b>Estimated Time:</b> <?php echo $duration; ?> Minutes</p>
           </div>
           <div class="button">
-            <a href="../includes/start-quiz.inc.php?quiz=<?php echo $quiz_id; ?>" class="btn" id="start-btn">Start Quiz</a>
+            <form action="../includes/quiz-on.inc.php" method="post">
+              <!-- hidden -->
+              <input type="hidden" name="quiz" value="<?php echo $quiz_id; ?>">
+              <div class="butttons">
+              <a href="../includes/start-quiz.inc.php?quiz=<?php echo $quiz_id; ?>" class="btn" id="start-btn">Start Quiz</a>
+              <?php 
+                if(showResultButton($conn,$user_id,$quiz_id)) {
+              ?>
+              <button class="btn btn-success" type="submit" name="result">View Previous Result</button>
+              <?php } ?>
+            </div>
+          </form>
           </div>
         </div>
       </div>

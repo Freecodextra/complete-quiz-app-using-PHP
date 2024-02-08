@@ -151,7 +151,7 @@ if (isset($_SESSION['admin'])) {
               <div class="mb-3">
                 <label for="student" class="form-label">Answer</label>
                 <select name="answer" id="answer" class="form-select">
-                  <option value="0">--- Choose Answer ---</option>
+                  <option value="-1">--- Choose Answer ---</option>
                   <option value="0">Option 1</option>
                   <option value="1">Option 2</option>
                   <option value="2">Option 3</option>
@@ -238,7 +238,7 @@ if (isset($_SESSION['admin'])) {
               <div class="mb-3">
                 <label for="student" class="form-label">Answer</label>
                 <select name="e-answer" id="e-answer" class="form-select">
-                  <option value="0">--- Choose Answer ---</option>
+                  <option value="-1">--- Choose Answer ---</option>
                   <option value="0">Option 1</option>
                   <option value="1">Option 2</option>
                   <option value="2">Option 3</option>
@@ -349,12 +349,12 @@ if (isset($_SESSION['admin'])) {
         edit: edit
       }, function(data, status) {
         var result = JSON.parse(data);
-        console.log(result);
+        // console.log(result);
         $("#e-question").val(result[0].question);
         for (let i = 0; i < result[1].length; i++) {
           $("#e-opt" + (i + 1) + "").val(result[1][i].option);
           if (Number(result[1][i].answer) === 1) {
-            $("#e-answer").val(Number(result[1][i].answer));
+            $("#e-answer").val(i);
           }
         }
         $("#e-course").val(Number(result[0].course_id));

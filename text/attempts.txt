@@ -1,1 +1,1 @@
-{"data":[[1,"CIS\/STD\/009","Nasir","Muhammad","3","2","2023-01-08 20:36:13","2023-01-08 20:37:10","<td>\u2022\u2022\u2022<div class=\"links shadow-sm\">\r\n            <form method=\"post\" action=\".\/quiz-result.php\">\r\n            <button type=\"submit\" name=\"view\" value=\"5.9\">View Result<\/button>\r\n            <\/form>\r\n            <button type=\"submit\" name=\"delete\" value=\"5.9\" onclick=\"deleteAttempt(5.9)\">Delete Attempt<\/button>\r\n          <\/div><\/td>"]]}
+{"data":[[null,null,null,null,null,null,null,null,null]]}

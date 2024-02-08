@@ -152,7 +152,7 @@ if (isset($_SESSION['admin'])) {
                   <div class="mb-3">
                     <label for="student" class="form-label">Answer</label>
                     <select name="answer" id="answer" class="form-select">
-                      <option value="0">--- Choose Answer ---</option>
+                      <option value="-1">--- Choose Answer ---</option>
                       <option value="0">Option 1</option>
                       <option value="1">Option 2</option>
                       <option value="2">Option 3</option>
@@ -248,7 +248,7 @@ if (isset($_SESSION['admin'])) {
                   <div class="table-data shadow-sm">
                     <table width="100%" class="table table-hover table-borderless">
                       <div class="alert alert-primary">
-                        <strong><?php echo $topic_name . " - " . $quiz_name; ?> QUestions</strong>
+                        <strong><?php echo $topic_name . " - " . $quiz_name; ?> Questions</strong>
                       </div>
                       <thead>
                         <tr>
@@ -449,8 +449,8 @@ if (isset($_SESSION['admin'])) {
             viewQuestion: viewQuestion,
             quizId: quizId
           }, function(data, status) {
-            if(data = "No Questions Found") {
-              input = "No Questions Found";
+            if(data === "No Questions Found") {
+              $("#v-tbody").html("No Questions Found");
             } else {
               var results = JSON.parse(data);
               results.forEach(result => {
